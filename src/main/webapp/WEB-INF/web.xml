@@ -4,7 +4,7 @@
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          version="2.5">
 
-    <display-name>Account Registration Web Application</display-name>
+    <display-name>Grade One System Web Application</display-name>
 
     <!-- Location of Java @Configuration classes that configure the components that makeup this application -->
     <context-param>
