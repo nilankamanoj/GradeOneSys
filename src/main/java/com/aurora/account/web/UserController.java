@@ -24,9 +24,11 @@ public class UserController {
     private UserValidator userValidator;
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public String registration(Model model) {
+    public String registration(Model model, String ok) {
         model.addAttribute("userForm", new User());
-
+        if (ok != null){
+            model.addAttribute("message", "user added successfully.");
+        }
         return "registration";
     }
 
@@ -40,9 +42,10 @@ public class UserController {
 
         userService.save(userForm);
 
-        securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
+       // securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
 
-        return "redirect:/welcome";
+      //  return "redirect:/welcome";
+        return "redirect:/registration?ok";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)

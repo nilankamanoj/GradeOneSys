@@ -11,6 +11,9 @@ public class User {
     private String username;
     private String password;
     private String passwordConfirm;
+private String occupation;
+
+
     private Set<Role> roles;
 
     @Id
@@ -34,9 +37,18 @@ public class User {
     public String getPassword() {
         return password;
     }
+    
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+        public String getOccupation() {
+        return occupation;
+    }
+
+    public void setOccupation(String occupation) {
+        this.occupation = occupation;
     }
 
     @Transient
