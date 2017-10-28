@@ -31,7 +31,13 @@ CREATE TABLE `user` (
   `password` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
+DROP TABLE IF EXISTS `applicant`;
+CREATE TABLE `applicant` (
+  `application_id` char(8) NOT NULL,
+  `first_name` varchar(20) NOT NULL,
+  `second_name` varchar(20) NOT NULL,
+  PRIMARY KEY (`application_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 --
 -- Table structure for table `user_role`
 --

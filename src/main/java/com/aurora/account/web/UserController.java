@@ -1,6 +1,8 @@
 package com.aurora.account.web;
 
 import com.aurora.account.model.User;
+import com.aurora.account.model.Applicant;
+import com.aurora.account.service.ApplicantService;
 import com.aurora.account.service.SecurityService;
 import com.aurora.account.service.UserService;
 import com.aurora.account.validator.UserValidator;
@@ -17,6 +19,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ApplicantService applicantService;
+        
     @Autowired
     private SecurityService securityService;
 
@@ -62,5 +67,20 @@ public class UserController {
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String welcome(Model model) {
         return "welcome";
+    }
+     @RequestMapping(value = "/addapplication", method = RequestMethod.GET)
+     public String addapplication(Model model){
+         model.addAttribute("applicantForm", new Applicant());
+         return "addapplication";
+     }
+    @RequestMapping(value = "/addapplication", method = RequestMethod.POST)
+    public String addapplication(@ModelAttribute("applicantForm") Applicant applicantForm, BindingResult bindingResult, Model model) {
+       // userValidator.validate(applicantForm, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            return "registration";
+        }
+        applicantService.save(applicantForm);
+        return "redirect:/addapplication?ok";
     }
 }
