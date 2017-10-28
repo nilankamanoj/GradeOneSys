@@ -5,6 +5,7 @@ import com.aurora.account.model.Applicant;
 import com.aurora.account.service.ApplicantService;
 import com.aurora.account.service.SecurityService;
 import com.aurora.account.service.UserService;
+import com.aurora.account.validator.ApplicationValidator;
 import com.aurora.account.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,9 @@ public class UserController {
 
     @Autowired
     private UserValidator userValidator;
+    
+    @Autowired
+    private ApplicationValidator appValidator;
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model, String ok) {
@@ -46,10 +50,6 @@ public class UserController {
         }
 
         userService.save(userForm);
-
-       // securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
-
-      //  return "redirect:/welcome";
         return "redirect:/registration?ok";
     }
 
@@ -69,16 +69,19 @@ public class UserController {
         return "welcome";
     }
      @RequestMapping(value = "/addapplication", method = RequestMethod.GET)
-     public String addapplication(Model model){
+     public String addapplication(Model model, String ok){
          model.addAttribute("applicantForm", new Applicant());
+         if (ok != null){
+            model.addAttribute("message", "application added successfully.");
+        }
          return "addapplication";
      }
     @RequestMapping(value = "/addapplication", method = RequestMethod.POST)
     public String addapplication(@ModelAttribute("applicantForm") Applicant applicantForm, BindingResult bindingResult, Model model) {
        // userValidator.validate(applicantForm, bindingResult);
-
+       appValidator.validate(applicantForm, bindingResult);
         if (bindingResult.hasErrors()) {
-            return "registration";
+            return "addapplication";
         }
         applicantService.save(applicantForm);
         return "redirect:/addapplication?ok";

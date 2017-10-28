@@ -31,7 +31,7 @@
 <div class="container">
 
     <form:form method="POST" modelAttribute="applicantForm" class="form-signin">
-        <h2 class="form-signin-heading">Create your account</h2>
+        <h2 class="form-signin-heading">Add application details</h2>
          <span>${message}</span>
         <spring:bind path = "Id">
             <div class="form-group ${status.error ? 'has-error' : ''}">

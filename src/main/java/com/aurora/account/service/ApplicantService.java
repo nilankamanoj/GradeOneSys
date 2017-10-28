@@ -14,5 +14,11 @@ public class ApplicantService{
     public void save(Applicant applicant) {
         applicantRepository.save(applicant);
     }
+    
+   public Applicant findOne(String Id){
+      return applicantRepository.findOne(Id);
+    }
+
+    
 
 }
