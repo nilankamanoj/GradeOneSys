@@ -28,7 +28,7 @@
 
 <body>
 
-<div class="container">
+
 
     <form:form method="POST" modelAttribute="applicantForm" class="form-signin">
         <h2 class="form-signin-heading">Add application details</h2>
@@ -54,13 +54,71 @@
                 <form:errors path="second_name"></form:errors>
             </div>
 </spring:bind>
-       
+ 
+              <spring:bind path="initials">
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                <form:input type="text" path="initials" class="form-control" placeholder="initials"
+                            autofocus="true"></form:input>
+                <form:errors path="initials"></form:errors>
+            </div>
+</spring:bind>
+                <spring:bind path="dob">
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                <form:input type="text" path="dob" class="form-control" placeholder="date of birth"
+                            autofocus="true"></form:input>
+                <form:errors path="dob"></form:errors>
+            </div>
+</spring:bind>
+                       <spring:bind path="gender">
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                <form:input type="text" path="gender" class="form-control" placeholder="gender"
+                            autofocus="true"></form:input>
+                <form:errors path="gender"></form:errors>
+            </div>
+</spring:bind>
+                <spring:bind path="religion">
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                <form:input type="text" path="religion" class="form-control" placeholder="religion"
+                            autofocus="true"></form:input>
+                <form:errors path="religion"></form:errors>
+            </div>
+</spring:bind>
+
+                <spring:bind path="age">
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                <form:input type="text" path="age" class="form-control" placeholder="age"
+                            autofocus="true"></form:input>
+                <form:errors path="age"></form:errors>
+            </div>
+</spring:bind>
+                               <spring:bind path="district">
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                <form:input type="text" path="district" class="form-control" placeholder="district"
+                            autofocus="true"></form:input>
+                <form:errors path="district"></form:errors>
+            </div>
+</spring:bind>
+                       <spring:bind path="div_sec">
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                <form:input type="text" path="div_sec" class="form-control" placeholder="secretary division"
+                            autofocus="true"></form:input>
+                <form:errors path="div_sec"></form:errors>
+            </div>
+</spring:bind>
+                <spring:bind path="div_grama">
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                <form:input type="text" path="div_grama" class="form-control" placeholder="grama division"
+                            autofocus="true"></form:input>
+                <form:errors path="div_grama"></form:errors>
+            </div>
+</spring:bind>
+      
 
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
     </form:form>
 
-</div>
+
 <!-- /container -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>

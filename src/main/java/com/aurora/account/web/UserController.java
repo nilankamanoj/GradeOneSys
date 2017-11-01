@@ -79,11 +79,12 @@ public class UserController {
     @RequestMapping(value = "/addapplication", method = RequestMethod.POST)
     public String addapplication(@ModelAttribute("applicantForm") Applicant applicantForm, BindingResult bindingResult, Model model) {
        // userValidator.validate(applicantForm, bindingResult);
-       appValidator.validate(applicantForm, bindingResult);
-        if (bindingResult.hasErrors()) {
-            return "addapplication";
-        }
-        applicantService.save(applicantForm);
+      // appValidator.validate(applicantForm, bindingResult);
+      //  if (bindingResult.hasErrors()) {
+       //     return "addapplication";
+      //  }
+       // applicantService.save(applicantForm);
+       applicantForm.saveApp();
         return "redirect:/addapplication?ok";
     }
 }
