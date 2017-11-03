@@ -1,5 +1,6 @@
 package com.aurora.account.web;
 
+import com.aurora.account.Util.ContentGenerator;
 import com.aurora.account.model.User;
 import com.aurora.account.model.Applicant;
 import com.aurora.account.service.ApplicantService;
@@ -8,6 +9,9 @@ import com.aurora.account.service.UserService;
 import com.aurora.account.validator.ApplicationValidator;
 import com.aurora.account.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class UserController {
+    @Autowired
+    private ContentGenerator contentgen;
     @Autowired
     private UserService userService;
 
@@ -66,6 +72,16 @@ public class UserController {
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String welcome(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+        String currentUserName = authentication.getName();
+        
+        
+      //  contentgen=new ContentGenerator(currentUserName);
+        contentgen.setGen(currentUserName);
+        String nav=contentgen.getNavbar();
+        model.addAttribute("nav", nav);
+    }
         return "welcome";
     }
      @RequestMapping(value = "/addapplication", method = RequestMethod.GET)

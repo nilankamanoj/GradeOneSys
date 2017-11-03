@@ -14,8 +14,8 @@
     <meta name="author" content="">
 
     <title>Welcome</title>
-
-    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/css1.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -24,17 +24,36 @@
     <![endif]-->
 </head>
 <body>
-<div class="container">
 
-    <c:if test="${pageContext.request.userPrincipal.name != null}">
+<div class="container">
+    ${nav}
+
+<ul class="nav navbar-nav navbar-right">
+
+    <li class="dropdown">
+	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+		<span class="glyphicon glyphicon-user"></span>&nbsp;Hi' ${pageContext.request.userPrincipal.name}&nbsp;<span class="caret"></span></a>
+			<ul class="dropdown-menu">
+			<li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;View Profile</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;Change Password</a></li>
+			<li><a onclick="document.forms['logoutForm'].submit()"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Sign Out</a></li>
+
+			</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+<div class="container">
+        <c:if test="${pageContext.request.userPrincipal.name != null}">
         <form id="logoutForm" method="POST" action="${contextPath}/logout">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
 
-        <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
+        
 
     </c:if>
-
 </div>
 <!-- /container -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

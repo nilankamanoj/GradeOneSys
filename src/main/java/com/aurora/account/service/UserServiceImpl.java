@@ -33,6 +33,7 @@ public class UserServiceImpl implements UserService {
        }
        else if(occupation.trim().equals("data entry")){
          roleSet.add(roleRepository.findAll().get(0));
+          roleSet.add(roleRepository.findAll().get(2));
          user.setRoles(roleSet);
          
            

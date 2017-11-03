@@ -181,10 +181,11 @@ CREATE TABLE IF NOT EXISTS `GradeOneSchema`.`assigned_applicant` (
 insert into user values('1','user001','$2a$11$EBNRlouE8xw4sj9XWhjKd.wZSXCL5xWk0YFOCNRRrRk1R.HD/ht3m','admin');
 insert into role values('1','ROLE_USER');
 insert into role values('2','ROLE_ADD_USER');
+
 insert into user_role values('1','1');
 insert into user_role values('1','2');
 
-
+insert into role values('3','ROLE_INSERT');
 
 
 
