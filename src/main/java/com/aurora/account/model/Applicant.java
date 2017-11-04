@@ -20,6 +20,40 @@ public class Applicant {
     private String religion;
     private String age;
     private String district;
+    private String electro_cert;
+    private String grama_cert;
+    private int appResult=0;
+
+    public int getAppResult() {
+        return appResult;
+    }
+
+    public void setAppResult(int appResult) {
+        this.appResult = appResult;
+    }
+
+    public String getElectro_cert() {
+        return electro_cert;
+    }
+
+    public void setElectro_cert(String electro_cert) {
+        this.electro_cert = electro_cert;
+        if(electro_cert!=null){
+            appResult+=20;
+        }
+    }
+
+    public String getGrama_cert() {
+        return grama_cert;
+    }
+
+    public void setGrama_cert(String grama_cert) {
+        this.grama_cert = grama_cert;
+        if(grama_cert!=null){
+            appResult+=10;
+        }
+    }
+    
 
     public String getDistrict() {
         return district;
@@ -56,6 +90,8 @@ public class Applicant {
 
     public void setDob(String dob) {
         this.dob = dob;
+        String[] parts= dob.split("-");
+        this.age=String.valueOf(2017-Integer.parseInt(parts[0]));
     }
 
     public String getGender() {
@@ -135,7 +171,7 @@ public class Applicant {
     public void saveApp(){
         DbConnection con=new DbConnection();
         JdbcTemplate stmt= con.getConnection();
-        stmt.update("insert into applicant values('"+application_id+"','"+first_name+"','"+second_name+"','"+initials+"','"+dob+"','"+gender+"','"+religion+"','"+age+"','"+district+"','"+div_sec+"','"+div_grama+"')");
+        stmt.update("insert into applicant values('"+application_id+"','"+first_name+"','"+second_name+"','"+initials+"','"+dob+"','"+gender+"','"+religion+"','"+age+"','"+district+"','"+div_sec+"','"+div_grama+"','"+appResult+"')");
       
         /*
         Connection con=database.getCon();

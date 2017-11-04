@@ -20,6 +20,49 @@
     
     <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/css1.css" rel="stylesheet">
+    <script type="text/javascript">
+ //<![CDATA[ 
+ // array of possible countries in the same order as they appear in the country selection list 
+ var countryLists = new Array(4) 
+ countryLists["empty"] = ["Select a district"]; 
+ countryLists["Gampaha"] = ["gampaha", "minuwangoda", "kaduwela","kelaniya"]; 
+ countryLists["Colombo"] = ["colombo", "galkissa", "wellawaththa", "dehiwala"]; 
+ countryLists["Kaluthara"] = ["kaluthara", "panadura", "wadduwa"]; 
+
+ /* CountryChange() is called from the onchange event of a select element. 
+ * param selectObj - the select object which fired the on change event. 
+ */ 
+ function countryChange(selectObj) { 
+ // get the index of the selected option 
+ var idx = selectObj.selectedIndex; 
+ // get the value of the selected option 
+ var which = selectObj.options[idx].value; 
+ // use the selected option value to retrieve the list of items from the countryLists array 
+ cList = countryLists[which]; 
+ // get the country select element via its known id 
+ var cSelect = document.getElementById("country"); 
+ // remove the current options from the country select 
+ var len=cSelect.options.length; 
+ while (cSelect.options.length > 0) { 
+ cSelect.remove(0); 
+ } 
+ var newOption; 
+ // create new options 
+ for (var i=0; i<cList.length; i++) { 
+ newOption = document.createElement("option"); 
+ newOption.value = cList[i];  // assumes option string and value are the same 
+ newOption.text=cList[i]; 
+ // add the new option 
+ try { 
+ cSelect.add(newOption);  // this will fail in DOM browsers but is needed for IE 
+ } 
+ catch (e) { 
+ cSelect.appendChild(newOption); 
+ } 
+ } 
+ } 
+//]]>
+</script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -71,39 +114,50 @@
                 <form:errors path="dob"></form:errors>
             </div>
 </spring:bind>
+
                        <spring:bind path="gender">
                         <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="gender" class="form-control" placeholder="gender"
-                            autofocus="true"></form:input>
+                            <form:select type="text" path="gender" class="form-control" 
+                            autofocus="true">
+                                <form:option value="NO">Chose Gender</form:option>
+                                <form:option value="male">Male</form:option>
+                                <form:option value="femail">Femail</form:option>
+                            </form:select>
                 <form:errors path="gender"></form:errors>
             </div>
 </spring:bind>
                 <spring:bind path="religion">
                         <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="religion" class="form-control" placeholder="religion"
-                            autofocus="true"></form:input>
+                <form:select type="text" path="religion" class="form-control" 
+                            autofocus="true">
+                                <form:option value="NO">Chose Religion</form:option>
+                                <form:option value="buddhist">Buddhist</form:option>
+                                <form:option value="Cristian">Christian</form:option>
+                                <form:option value="hindu">Hinduism</form:option>
+                                
+                            </form:select>
                 <form:errors path="religion"></form:errors>
             </div>
 </spring:bind>
 
-                <spring:bind path="age">
-                        <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="age" class="form-control" placeholder="age"
-                            autofocus="true"></form:input>
-                <form:errors path="age"></form:errors>
-            </div>
-</spring:bind>
                                <spring:bind path="district">
                         <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="district" class="form-control" placeholder="district"
-                            autofocus="true"></form:input>
+                <form:select type="text" path="district" class="form-control" id="continent" onchange="countryChange(this);"
+                            autofocus="true">
+                    <form:option value="empty">Select a District</form:option>
+                    <form:option value="Gampaha">Gampaha</form:option>
+                    <form:option value="Colombo">Colombo</form:option>
+                    <form:option value="Kaluthara">Kaluthara</form:option>
+                </form:select>
                 <form:errors path="district"></form:errors>
             </div>
 </spring:bind>
                        <spring:bind path="div_sec">
                         <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="div_sec" class="form-control" placeholder="secretary division"
-                            autofocus="true"></form:input>
+                <form:select type="text" path="div_sec" class="form-control" id="country"
+                            autofocus="true">
+                    <form:option value="0">Select a district</form:option>
+                </form:select>
                 <form:errors path="div_sec"></form:errors>
             </div>
 </spring:bind>
@@ -114,6 +168,22 @@
                 <form:errors path="div_grama"></form:errors>
             </div>
 </spring:bind>
+                        <spring:bind path="electro_cert">
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                            
+                            <form:checkbox path="electro_cert" value="true" label="electrical certified"></form:checkbox>
+                
+                <form:errors path="electro_cert"></form:errors>
+            </div>
+</spring:bind>
+                                <spring:bind path="grama_cert">
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+               <form:checkbox path="grama_cert" value="true" label="grama certified"></form:checkbox>
+                
+                <form:errors path="grama_cert"></form:errors>
+            </div>
+</spring:bind>
+        
       
 
 

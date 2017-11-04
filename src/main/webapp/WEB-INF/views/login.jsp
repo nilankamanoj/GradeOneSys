@@ -27,7 +27,7 @@
 </head>
 
 <body>
-
+<div class="signin-form">
 <div class="container">
 <div class="inner">
     <form method="POST" action="${contextPath}/login" class="form-signin">
@@ -46,6 +46,7 @@
         </div>
 
     </form>
+</div>
 </div>
 </div>
 <!-- /container -->
