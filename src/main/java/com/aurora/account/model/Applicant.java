@@ -1,10 +1,9 @@
 package com.aurora.account.model;
 
-import com.aurora.account.Util.DbConnection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import org.springframework.jdbc.core.JdbcTemplate;
+
 
 
 @Entity
@@ -20,6 +19,8 @@ public class Applicant {
     private String religion;
     private String age;
     private String district;
+    private String div_sec;
+    private String div_grama;
     private String electro_cert;
     private String grama_cert;
     private int appResult=0;
@@ -62,8 +63,7 @@ public class Applicant {
     public void setDistrict(String district) {
         this.district = district;
     }
-    private String div_sec;
-    private String div_grama;
+    
     
    //private Database database ;
 
@@ -90,8 +90,8 @@ public class Applicant {
 
     public void setDob(String dob) {
         this.dob = dob;
-        String[] parts= dob.split("-");
-        this.age=String.valueOf(2017-Integer.parseInt(parts[0]));
+        
+        
     }
 
     public String getGender() {
@@ -118,13 +118,6 @@ public class Applicant {
         this.age = age;
     }
 
-    public String getDisrict() {
-        return district;
-    }
-
-    public void setDisrict(String disrict) {
-        this.district = disrict;
-    }
 
     public String getDiv_sec() {
         return div_sec;
@@ -167,28 +160,21 @@ public class Applicant {
     public void setSecond_name(String second_name) {
         this.second_name = second_name;
     }
-    
+    /*
     public void saveApp(){
+        
         DbConnection con=new DbConnection();
         JdbcTemplate stmt= con.getConnection();
         stmt.update("insert into applicant values('"+application_id+"','"+first_name+"','"+second_name+"','"+initials+"','"+dob+"','"+gender+"','"+religion+"','"+age+"','"+district+"','"+div_sec+"','"+div_grama+"','"+appResult+"')");
       
-        /*
-        Connection con=database.getCon();
-        try {
-            Statement stmt=con.createStatement();
-            stmt.executeQuery("insert into applicant values("+application_id+","+first_name+","+second_name+","+initials+","+dob+","+gender+","+religion+","+age+","+district+","+div_sec+","+div_grama+")");
-        } catch (SQLException ex) {
-            Logger.getLogger(Applicant.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            con.close();
-        } catch (SQLException ex) {
+        ApplicantRepository appRepo=new ApplicantRepository();
+        appRepo.saveObj(this);
        
-     Logger.getLogger(Applicant.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    }
 */
-        
+    @Override
+    public String toString(){
+        return("('"+application_id+"','"+first_name+"','"+second_name+"','"+initials+"','"+dob+"','"+gender+"','"+religion+"','"+age+"','"+district+"','"+div_sec+"','"+div_grama+"','"+appResult+"')");
     }
     
 }

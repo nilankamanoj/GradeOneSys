@@ -26,8 +26,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private ApplicantService applicantService;
         
     @Autowired
     private SecurityService securityService;
@@ -37,6 +35,9 @@ public class UserController {
     
     @Autowired
     private ApplicationValidator appValidator;
+    
+    @Autowired
+    private ApplicantService appService;
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model, String ok) {
@@ -95,12 +96,12 @@ public class UserController {
     @RequestMapping(value = "/addapplication", method = RequestMethod.POST)
     public String addapplication(@ModelAttribute("applicantForm") Applicant applicantForm, BindingResult bindingResult, Model model) {
        // userValidator.validate(applicantForm, bindingResult);
-      // appValidator.validate(applicantForm, bindingResult);
-      //  if (bindingResult.hasErrors()) {
-       //     return "addapplication";
-      //  }
-       // applicantService.save(applicantForm);
-       applicantForm.saveApp();
+      appValidator.validate(applicantForm, bindingResult);
+    if (bindingResult.hasErrors()) {
+            return "addapplication";
+       }
+
+       appService.saveApp(applicantForm);
         return "redirect:/addapplication?ok";
     }
 }
