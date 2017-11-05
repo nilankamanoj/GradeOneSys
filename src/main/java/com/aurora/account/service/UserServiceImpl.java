@@ -1,6 +1,7 @@
 package com.aurora.account.service;
 
 import com.aurora.account.model.Role;
+import com.aurora.account.model.TempUser;
 import com.aurora.account.model.User;
 import com.aurora.account.repository.RoleRepository;
 import com.aurora.account.repository.UserRepository;
@@ -44,5 +45,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+    
+    @Override
+    public boolean verifyPassword(TempUser tmp,User user){
+        return bCryptPasswordEncoder.matches(tmp.getOldPass(),user.getPassword());
     }
 }

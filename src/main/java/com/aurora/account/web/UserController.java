@@ -3,10 +3,12 @@ package com.aurora.account.web;
 import com.aurora.account.Util.ContentGenerator;
 import com.aurora.account.model.User;
 import com.aurora.account.model.Applicant;
+import com.aurora.account.model.TempUser;
 import com.aurora.account.service.ApplicantService;
 import com.aurora.account.service.SecurityService;
 import com.aurora.account.service.UserService;
 import com.aurora.account.validator.ApplicationValidator;
+import com.aurora.account.validator.ChangePassValidator;
 import com.aurora.account.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -25,7 +27,8 @@ public class UserController {
     private ContentGenerator contentgen;
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private ChangePassValidator changePassValidator;
         
     @Autowired
     private SecurityService securityService;
@@ -103,5 +106,45 @@ public class UserController {
 
        appService.saveApp(applicantForm);
         return "redirect:/addapplication?ok";
+    }
+    
+    
+    @RequestMapping(value = "/changepass", method = RequestMethod.GET)
+    public String changepass(Model model, String ok) {
+        model.addAttribute("changeForm", new TempUser());
+        if (ok != null){
+            model.addAttribute("message", "password changed successfully.");
+        }
+        return "changepass";
+    }
+
+    
+    @RequestMapping(value = "/changepass", method = RequestMethod.POST)
+    public String changepass(@ModelAttribute("changeForm") TempUser changeForm, BindingResult bindingResult, Model model) {
+        User authUser = null;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+        String currentUserName = authentication.getName();
+        authUser=userService.findByUsername(currentUserName);
+        User tempUser=new User();
+        
+        changePassValidator.validate(changeForm, authUser, bindingResult);
+         if (bindingResult.hasErrors()) {
+            return "changepass";
+       }
+        
+        tempUser.setUsername("tempUser");
+        tempUser.setOccupation(authUser.getOccupation());
+        tempUser.setPassword(changeForm.getPassword());
+        tempUser.setPasswordConfirm(changeForm.getPasswordConfirm());
+        tempUser.setId(authUser.getId());
+        tempUser.setUsername(authUser.getUsername());
+        
+        userService.save(tempUser);
+        
+
+        }
+
+        return "redirect:/changepass?ok";
     }
 }

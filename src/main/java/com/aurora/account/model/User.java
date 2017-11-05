@@ -13,6 +13,9 @@ public class User {
     private String password;
     private String passwordConfirm;
     private String occupation;
+    
+
+
     private Set<Role> roles;
 
     @Id

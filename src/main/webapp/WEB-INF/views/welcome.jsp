@@ -35,7 +35,7 @@
 		<span class="glyphicon glyphicon-user"></span>&nbsp;Hi' ${pageContext.request.userPrincipal.name}&nbsp;<span class="caret"></span></a>
 			<ul class="dropdown-menu">
 			<li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;View Profile</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;Change Password</a></li>
+                        <li><a href="changepass"><span class="glyphicon glyphicon-user"></span>&nbsp;Change Password</a></li>
 			<li><a onclick="document.forms['logoutForm'].submit()"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Sign Out</a></li>
 
 			</ul>
