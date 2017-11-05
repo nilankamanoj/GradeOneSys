@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -50,5 +51,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean verifyPassword(TempUser tmp,User user){
         return bCryptPasswordEncoder.matches(tmp.getOldPass(),user.getPassword());
+    }
+    @Override
+    public List<User>getAll(){
+        return userRepository.findAll();
     }
 }

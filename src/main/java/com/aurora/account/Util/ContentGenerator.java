@@ -30,6 +30,7 @@ public class ContentGenerator {
         }
         if(occupation.trim().equals("admin")){
            navbar+="<li><a href='registration'>Add user</a></li>";
+           navbar+="<li><a href='viewusers'>View Users</a></li>";
         }
         navbar+="</ul>";
         return navbar;

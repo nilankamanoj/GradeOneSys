@@ -10,6 +10,7 @@ import com.aurora.account.service.UserService;
 import com.aurora.account.validator.ApplicationValidator;
 import com.aurora.account.validator.ChangePassValidator;
 import com.aurora.account.validator.UserValidator;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -158,7 +159,27 @@ public class UserController {
         
         return "profile";
     }
-
+    
+    @RequestMapping(value = "/viewusers", method = RequestMethod.GET)
+    public String viewusers(Model model) {
+        
+        setNav(model);
+        
+        String content="<form id='contact'  >";
+        List<User> users = userService.getAll();
+        for(User user : users){
+            contentgen.setGen(user.getUsername());
+            content+=(contentgen.getProfile()+" <br>");
+        }
+        content+="</form>";
+        model.addAttribute("content", content);
+        return "viewusers";
+    }
+    
+  @RequestMapping(value = "/viewusers", method = RequestMethod.POST)
+    public String deleteuser(Model model) {
+        return "viewusers?ok";
+    }
 
     
     public String getAuth(){

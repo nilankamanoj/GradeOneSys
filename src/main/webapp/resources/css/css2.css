@@ -20,8 +20,8 @@ body {
   color: #777;
   background-image: url("bak.jpeg");
   background-repeat: no-repeat;
-    background-position: right top;
-    background-attachment: fixed;
+  background-attachment: fixed;
+  background-size: 100%
 }
 
 .container {
