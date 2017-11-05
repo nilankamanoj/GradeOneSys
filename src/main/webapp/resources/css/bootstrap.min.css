@@ -4492,7 +4492,7 @@ select[multiple].input-group-sm > .form-control, select[multiple].input-group-sm
     min-height: 50px;
     margin-bottom: 20px;
     border: 1px solid transparent
-    background : #000000
+    
 }
 
 @media (min-width: 768px) {

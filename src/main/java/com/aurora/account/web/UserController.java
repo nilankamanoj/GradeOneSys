@@ -140,6 +140,16 @@ public class UserController {
         
         return "redirect:/changepass?ok";
     }
+    
+    @RequestMapping(value = "/profile", method = RequestMethod.GET)
+    public String profile(Model model) {
+        
+        setNav(model);
+        setProfile(model);
+        
+        return "profile";
+    }
+    
     public String getAuth(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
@@ -155,5 +165,9 @@ public class UserController {
         contentgen.setGen(currentUserName);
         String nav=contentgen.getNavbar();
         model.addAttribute("nav", nav);
+    }
+    public void setProfile(Model model){
+        String profile = contentgen.getProfile();
+        model.addAttribute("profile", profile);
     }
 }

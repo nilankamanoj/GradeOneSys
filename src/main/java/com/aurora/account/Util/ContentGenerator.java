@@ -35,6 +35,12 @@ public class ContentGenerator {
         return navbar;
     }
     
+    public String getProfile(){
+        String profile="";
+        profile+="<p><b>User Name : </b>"+" "+user.getUsername()+"<br><b>Occupation : </b>"+" "+occupation+"<p>";
+        return profile;
+    }
+    
     
     
 }

@@ -1,5 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
@@ -13,8 +14,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Welcome</title>
-<link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <title>Profile</title>
+
+    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/css1.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/css2.css" rel="stylesheet">
 
@@ -24,11 +27,11 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
+
 <body>
 
 <div class="container">
-    ${nav}
-
+${nav}
 <ul class="nav navbar-nav navbar-right">
 
     <li class="dropdown">
@@ -42,16 +45,19 @@
 			</ul>
 </li>
 </ul>
-</div>
-</div>
-
-
-<div class="container">
-        <c:if test="${pageContext.request.userPrincipal.name != null}">
+                          <c:if test="${pageContext.request.userPrincipal.name != null}">
         <form id="logoutForm" method="POST" action="${contextPath}/logout">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>       
-        </c:if>
+        </c:if>   
+    <form:form id="contact" method="POST" modelAttribute="changeForm" class="form-signin">
+        <h2 class="form-signin-heading">Profile</h2>
+        
+         <span>${message}</span>
+                ${profile}
+         
+    </form:form>
+
 </div>
 <!-- /container -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
