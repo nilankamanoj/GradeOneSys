@@ -14,6 +14,7 @@
         <intercept-url pattern="/changepass" access="hasRole('ROLE_USER')"/>
         <intercept-url pattern="/profile" access="hasRole('ROLE_USER')"/>
         <intercept-url pattern="/registration" access="hasRole('ROLE_ADD_USER')"/>
+        <access-denied-handler error-page="/welcome?error403" />
         <form-login login-page="/login" default-target-url="/welcome" authentication-failure-url="/login?error" username-parameter="username" password-parameter="password"/>
         <logout logout-success-url="/login?logout" />
     </http>

@@ -1,9 +1,9 @@
 package com.aurora.account.web;
 
 import com.aurora.account.Util.ContentGenerator;
-import com.aurora.account.model.User;
 import com.aurora.account.model.Applicant;
 import com.aurora.account.model.TempUser;
+import com.aurora.account.model.User;
 import com.aurora.account.service.ApplicantService;
 import com.aurora.account.service.SecurityService;
 import com.aurora.account.service.UserService;
@@ -11,15 +11,19 @@ import com.aurora.account.validator.ApplicationValidator;
 import com.aurora.account.validator.ChangePassValidator;
 import com.aurora.account.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+
 
 @Controller
 public class UserController {
@@ -76,10 +80,15 @@ public class UserController {
     }
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
-    public String welcome(Model model) {
+    public String welcome(Model model, String error403,String error404) {
 
         setNav(model);
-    
+        if(error403!=null){
+            model.addAttribute("message","<form id='contact'><h1><div class='alert alert-info'>Requested Page Access Denied!.</div></h1><form>");
+        }
+        if(error404!=null){
+            model.addAttribute("message","<form id='contact'><h1><div class='alert alert-info'>Requested Page Not Found!.</div></h1><form>");
+        }
         return "welcome";
     }
      @RequestMapping(value = "/addapplication", method = RequestMethod.GET)
@@ -149,6 +158,8 @@ public class UserController {
         
         return "profile";
     }
+
+
     
     public String getAuth(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

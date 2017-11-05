@@ -35,8 +35,13 @@
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-
-    <listener>
+    
+       <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/error-404.jsp</location>
+    </error-page>
+    
+       <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 </web-app>

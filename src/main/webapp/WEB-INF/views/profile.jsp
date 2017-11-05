@@ -52,7 +52,10 @@ ${nav}
         </c:if>   
     <form:form id="contact" method="POST" modelAttribute="changeForm" class="form-signin">
         <h2 class="form-signin-heading">Profile</h2>
-        
+        <center>
+            <img width="100" height="auto"src="${contextPath}/resources/images/defaultProfile.png">
+            <br>
+        </center>
          <span>${message}</span>
                 ${profile}
          
