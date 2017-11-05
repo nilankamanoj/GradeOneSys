@@ -45,8 +45,9 @@ public class UserController {
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model, String ok) {
         model.addAttribute("userForm", new User());
+        setNav(model);
         if (ok != null){
-            model.addAttribute("message", "user added successfully.");
+            model.addAttribute("message", "<div class='alert alert-info'>user added successfully.</div>");
         }
         return "registration";
     }
@@ -69,30 +70,24 @@ public class UserController {
             model.addAttribute("error", "Your username and password is invalid.");
 
         if (logout != null)
-            model.addAttribute("message", "You have been logged out successfully.");
+            model.addAttribute("message", "<div class='alert alert-info'>You have been logged out successfully.</div>");
 
         return "login";
     }
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String welcome(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (!(authentication instanceof AnonymousAuthenticationToken)) {
-        String currentUserName = authentication.getName();
-        
-        
-      //  contentgen=new ContentGenerator(currentUserName);
-        contentgen.setGen(currentUserName);
-        String nav=contentgen.getNavbar();
-        model.addAttribute("nav", nav);
-    }
+
+        setNav(model);
+    
         return "welcome";
     }
      @RequestMapping(value = "/addapplication", method = RequestMethod.GET)
      public String addapplication(Model model, String ok){
          model.addAttribute("applicantForm", new Applicant());
+         setNav(model);
          if (ok != null){
-            model.addAttribute("message", "application added successfully.");
+            model.addAttribute("message", "<div class='alert alert-info'>application added successfully.</div>");
         }
          return "addapplication";
      }
@@ -112,8 +107,9 @@ public class UserController {
     @RequestMapping(value = "/changepass", method = RequestMethod.GET)
     public String changepass(Model model, String ok) {
         model.addAttribute("changeForm", new TempUser());
+        setNav(model);
         if (ok != null){
-            model.addAttribute("message", "password changed successfully.");
+            model.addAttribute("message", "<div class='alert alert-info'>password changed successfully.</div>");
         }
         return "changepass";
     }
@@ -122,9 +118,7 @@ public class UserController {
     @RequestMapping(value = "/changepass", method = RequestMethod.POST)
     public String changepass(@ModelAttribute("changeForm") TempUser changeForm, BindingResult bindingResult, Model model) {
         User authUser = null;
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (!(authentication instanceof AnonymousAuthenticationToken)) {
-        String currentUserName = authentication.getName();
+       String currentUserName=getAuth();
         authUser=userService.findByUsername(currentUserName);
         User tempUser=new User();
         
@@ -143,8 +137,23 @@ public class UserController {
         userService.save(tempUser);
         
 
-        }
-
+        
         return "redirect:/changepass?ok";
+    }
+    public String getAuth(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+        String currentUserName = authentication.getName();
+        return currentUserName;
+        }
+        else{
+            return null;
+        }
+    }
+    public void setNav(Model model){
+        String currentUserName=getAuth();
+        contentgen.setGen(currentUserName);
+        String nav=contentgen.getNavbar();
+        model.addAttribute("nav", nav);
     }
 }

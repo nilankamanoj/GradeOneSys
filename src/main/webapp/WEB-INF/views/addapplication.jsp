@@ -20,6 +20,7 @@
     
     <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/css1.css" rel="stylesheet">
+    
     <script type="text/javascript">
  //<![CDATA[ 
  // array of possible countries in the same order as they appear in the country selection list 
@@ -63,7 +64,7 @@
  } 
 //]]>
 </script>
-
+<link href="${contextPath}/resources/css/css2.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -73,11 +74,26 @@
 
 <body>
 
+<div class="container">
+${nav}
+<ul class="nav navbar-nav navbar-right">
 
+    <li class="dropdown">
+	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+		<span class="glyphicon glyphicon-user"></span>&nbsp;Hi' ${pageContext.request.userPrincipal.name}&nbsp;<span class="caret"></span></a>
+			<ul class="dropdown-menu">
+			<li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;View Profile</a></li>
+                        <li><a href="changepass"><span class="glyphicon glyphicon-user"></span>&nbsp;Change Password</a></li>
+			<li><a onclick="document.forms['logoutForm'].submit()"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Sign Out</a></li>
 
-    <form:form method="POST" modelAttribute="applicantForm" class="form-signin">
+			</ul>
+</li>
+</ul>
+    <form:form id="contact" method="POST" modelAttribute="applicantForm" class="form-signin">
         <h2 class="form-signin-heading">Add application details</h2>
+        
          <span>${message}</span>
+       
         <spring:bind path = "Id">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <form:input type="text" path="Id" class="form-control" placeholder="application id"
@@ -190,7 +206,7 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
     </form:form>
 
-
+</div>
 <!-- /container -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>

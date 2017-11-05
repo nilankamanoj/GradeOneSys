@@ -15,9 +15,10 @@
     <meta name="author" content="">
 
     <title>Log in with your account</title>
-
+<link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/css1.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/css2.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -30,17 +31,19 @@
 <div class="signin-form">
 <div class="container">
 <div class="inner">
-    <form method="POST" action="${contextPath}/login" class="form-signin">
+    <form id = "contact" method="POST" action="${contextPath}/login" class="form-signin">
         <h2 class="form-heading">Log in</h2>
 
         <div class="form-group ${error != null ? 'has-error' : ''}">
+            
             <span>${message}</span>
+           
             <input name="username" type="text" class="form-control" placeholder="Username"
                    autofocus="true"/>
             <input name="password" type="password" class="form-control" placeholder="Password"/>
             <span>${error}</span>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-
+            <br>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
             
         </div>

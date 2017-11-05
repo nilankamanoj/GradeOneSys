@@ -19,6 +19,7 @@
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/css1.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/css2.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -30,10 +31,25 @@
 <body>
 
 <div class="container">
+${nav}
+<ul class="nav navbar-nav navbar-right">
 
-    <form:form method="POST" modelAttribute="changeForm" class="form-signin">
+    <li class="dropdown">
+	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+		<span class="glyphicon glyphicon-user"></span>&nbsp;Hi' ${pageContext.request.userPrincipal.name}&nbsp;<span class="caret"></span></a>
+			<ul class="dropdown-menu">
+			<li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;View Profile</a></li>
+                        <li><a href="changepass"><span class="glyphicon glyphicon-user"></span>&nbsp;Change Password</a></li>
+			<li><a onclick="document.forms['logoutForm'].submit()"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Sign Out</a></li>
+
+			</ul>
+</li>
+</ul>
+    <form:form id="contact" method="POST" modelAttribute="changeForm" class="form-signin">
         <h2 class="form-signin-heading">Change Password</h2>
+        
          <span>${message}</span>
+       
                  <spring:bind path="oldPass">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <form:input type="password" path="oldPass" class="form-control" placeholder="Current Password"></form:input>
