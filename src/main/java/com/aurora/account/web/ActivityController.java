@@ -38,6 +38,7 @@ public class ActivityController {
          model.addAttribute("applicantForm", new Applicant());
          setNav(model);
          if (ok != null){
+             setNav(model);
             model.addAttribute("message", "<div class='alert alert-info'>application added successfully.</div>");
         }
          return "addapplication";
@@ -48,7 +49,7 @@ public class ActivityController {
        // userValidator.validate(applicantForm, bindingResult);
       appValidator.validate(applicantForm, bindingResult);
     if (bindingResult.hasErrors()) {
-        
+        setNav(model);
             return "addapplication";
        }
 

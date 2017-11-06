@@ -37,6 +37,7 @@ public class UserController {
         model.addAttribute("userForm", new User());
         setNav(model);
         if (ok != null){
+           setNav(model);
             model.addAttribute("message", "<div class='alert alert-info'>user added successfully.</div>");
         }
         return "registration";
@@ -47,6 +48,7 @@ public class UserController {
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
+            setNav(model);
             return "registration";
         }
 
@@ -70,10 +72,10 @@ public class UserController {
 
         setNav(model);
         if(error403!=null){
-            model.addAttribute("message","<form id='contact'><h1><div class='alert alert-info'>Requested Page Access Denied!.</div></h1><form>");
+            model.addAttribute("message","<form id='contact'><div class='alert alert-danger'>Requested Page Access Denied!.</div><a href='welcome'>go back</a><form>");
         }
         if(error404!=null){
-            model.addAttribute("message","<form id='contact'><h1><div class='alert alert-info'>Requested Page Not Found!.</div></h1><form>");
+            model.addAttribute("message","<form id='contact'><div class='alert alert-danger'>Requested Page Not Found!.</div><a href='welcome'>go back</a><form>");
         }
         return "welcome";
     }
@@ -83,6 +85,7 @@ public class UserController {
         model.addAttribute("changeForm", new TempUser());
         setNav(model);
         if (ok != null){
+            setNav(model);
             model.addAttribute("message", "<div class='alert alert-info'>password changed successfully.</div>");
         }
         return "changepass";
@@ -98,6 +101,7 @@ public class UserController {
         
         changePassValidator.validate(changeForm, authUser, bindingResult);
          if (bindingResult.hasErrors()) {
+             setNav(model);
             return "changepass";
        }
         
