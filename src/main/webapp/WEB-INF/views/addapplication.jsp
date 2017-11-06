@@ -15,12 +15,13 @@
     <meta name="author" content="">
 
     <title>Add applicant</title>
-
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
     
     <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/css1.css" rel="stylesheet">
-    
+
     <script type="text/javascript">
  //<![CDATA[ 
  // array of possible countries in the same order as they appear in the country selection list 
@@ -70,6 +71,15 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+<link rel="stylesheet" href="${contextPath}/resources/css/datepick.css">
+  <script src="${contextPath}/resources/js/datepick1.js"></script>
+  <script src="${contextPath}/resources/js/datepick2.js"></script>
+    <script>
+  $( function() {
+    $( ".datepicker-1" ).datepicker({ dateFormat: 'yy-mm-dd',changeYear: true,changeMonth: true });
+  } );
+  </script>
+
 </head>
 
 <body>
@@ -131,8 +141,7 @@ ${nav}
 </spring:bind>
                 <spring:bind path="dob">
                         <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="dob" class="form-control" placeholder="date of birth"
-                            autofocus="true"></form:input>
+                <form:input type="text" path="dob" class="datepicker-1" placeholder = "date of birth"></form:input>
                 <form:errors path="dob"></form:errors>
             </div>
 </spring:bind>
@@ -214,7 +223,7 @@ ${nav}
 
 </div>
 <!-- /container -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
 </html>
