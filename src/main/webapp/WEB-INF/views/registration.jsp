@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Create new account</title>
+    <title>Create new User</title>
 
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
@@ -53,7 +53,7 @@ ${nav}
         </form>       
         </c:if>   
     <form:form id="contact" method="POST" modelAttribute="userForm" class="form-signin">
-        <h2 class="form-signin-heading">Create New account</h2>
+        <h2 class="form-signin-heading">Create New User</h2>
         
          <span>${message}</span>
         
