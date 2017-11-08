@@ -19,6 +19,7 @@
         <property name="password" value="${jdbc.password}"/>
     </bean>
 
+
     <!-- Configure the entity manager factory bean -->
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
@@ -33,6 +34,8 @@
             </props>
         </property>
     </bean>
+
+
 
     <!-- Configure the transaction manager bean -->
     <bean id="transactionManager"

@@ -114,7 +114,7 @@ public class ActivityController {
     @RequestMapping(value = "/addparent", method = RequestMethod.GET)
      public String addparent(Model model, String ok){
         model.addAttribute("parentForm", new Parent());
-        
+        setNav(model,6);
         if (ok != null){
              
             model.addAttribute("message", "<div class='alert alert-info'>parent added successfully.</div>");
@@ -127,9 +127,11 @@ public class ActivityController {
        // userValidator.validate(applicantForm, bindingResult);
         parentValidator.validate(parentForm, bindingResult);
         if (bindingResult.hasErrors()) {
+            setNav(model,6);
             return "addparent";
         }
         parentService.saveApp(parentForm);
+        setNav(model,6);
         return "redirect:/addparent?ok";
     }
     

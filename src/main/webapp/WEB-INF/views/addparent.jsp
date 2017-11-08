@@ -24,18 +24,13 @@
         
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-        <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
-        <link href="${contextPath}/resources/css/css1.css" rel="stylesheet">
         <link href="${contextPath}/resources/css/css2.css" rel="stylesheet">
-        <link href="${contextPath}/resources/css/datepick.css" rel="stylesheet" >
-        
-        <script src="${contextPath}/resources/js/datepick1.js"></script>
-        <script src="${contextPath}/resources/js/datepick2.js"></script>
+
         
         
     </head>
     <body>
-        <div class="container">
+
         ${nav}
         <ul class="nav navbar-nav navbar-right">
 
@@ -51,6 +46,7 @@
         </li>
         </ul>
         </div>
+        <div class="container">
         <c:if test="${pageContext.request.userPrincipal.name != null}">
         <form id="logoutForm" method="POST" action="${contextPath}/logout">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
