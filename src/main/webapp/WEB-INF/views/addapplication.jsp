@@ -153,7 +153,7 @@ ${nav}
                             autofocus="true">
                                 <form:option value="NO">Chose Gender</form:option>
                                 <form:option value="male">Male</form:option>
-                                <form:option value="femail">Femail</form:option>
+                                <form:option value="fmale">Female</form:option>
                             </form:select>
                 <form:errors path="gender"></form:errors>
             </div>
