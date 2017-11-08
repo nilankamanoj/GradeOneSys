@@ -2,12 +2,15 @@ package com.aurora.account.web;
 
 import com.aurora.account.Util.ContentGenerator;
 import com.aurora.account.model.Applicant;
+import com.aurora.account.model.Parent;
 import com.aurora.account.model.School;
 import com.aurora.account.model.User;
 import com.aurora.account.service.ApplicantService;
+import com.aurora.account.service.ParentService;
 import com.aurora.account.service.SchoolService;
 import com.aurora.account.service.UserService;
 import com.aurora.account.validator.ApplicationValidator;
+import com.aurora.account.validator.ParentValidator;
 import com.aurora.account.validator.SchoolValidator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +40,10 @@ public class ActivityController {
     private SchoolValidator schoolValidator;
     @Autowired
     private SchoolService schoolService;
+    @Autowired
+    private ParentValidator parentValidator;
+    @Autowired
+    private ParentService parentService;
 
 
      @RequestMapping(value = "/addapplication", method = RequestMethod.GET)
@@ -104,7 +111,29 @@ public class ActivityController {
         setNav(model, 5);
         return "redirect:/addschool?ok";
     }
-    
+    @RequestMapping(value = "/addparent", method = RequestMethod.GET)
+     public String addparent(Model model, String ok){
+        model.addAttribute("parentForm", new Parent());
+        setNav(model,6);
+        if (ok != null){
+             
+            model.addAttribute("message", "<div class='alert alert-info'>parent added successfully.</div>");
+        }
+         return "addparent";
+     }
+     
+    @RequestMapping(value = "/addparent", method = RequestMethod.POST)
+    public String addparent(@ModelAttribute("parentForm") Parent parentForm, BindingResult bindingResult, Model model) {
+       // userValidator.validate(applicantForm, bindingResult);
+        parentValidator.validate(parentForm, bindingResult);
+        if (bindingResult.hasErrors()) {
+            setNav(model,6);
+            return "addparent";
+        }
+        parentService.saveApp(parentForm);
+        setNav(model,6);
+        return "redirect:/addparent?ok";
+    }
     
     public String getAuth(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
