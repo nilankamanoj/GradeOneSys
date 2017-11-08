@@ -25,7 +25,7 @@ public class ParentRepository extends Repository{
     @Override
     public Object getOne(String NIC) throws org.springframework.dao.EmptyResultDataAccessException{
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        String sql="select * from parent where NIC=?";
+        String sql="select * from parent where id=?";
         try{
         Parent parent = (Parent)super.stmt.queryForObject(
 			sql, new Object[] { NIC }, new ParentRowMapper());

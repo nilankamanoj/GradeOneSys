@@ -25,19 +25,13 @@ public class DbConnection {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/GradeOneSchema");
-<<<<<<< HEAD
         dataSource.setUsername("root");
         dataSource.setPassword("");
-        JdbcTemplate stmt=new JdbcTemplate(dataSource);
-=======
-        dataSource.setUsername("finley");
-        dataSource.setPassword("password");
 
         //ApplicationContext context = new ClassPathXmlApplicationContext("appconfig-data.xml");
         // get bean declared with name "dataSource" in the configuration file
       //  DriverManagerDataSource dataSource = (DriverManagerDataSource) context.getBean("dataSource");
        JdbcTemplate stmt=new JdbcTemplate(dataSource);
->>>>>>> refs/remotes/origin/master
         return stmt;
     }
     

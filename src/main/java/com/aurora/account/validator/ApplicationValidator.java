@@ -46,8 +46,6 @@ public class ApplicationValidator implements Validator {
                 errors.rejectValue("initials", "Invalid.applicationForm.initials");
                 break;
             }
-
-            
         }
         if(!applicant.getDob().isEmpty()){
         String[] partsDob= applicant.getDob().split("-");
@@ -80,13 +78,7 @@ public class ApplicationValidator implements Validator {
         if(applicant.getDiv_sec().trim().equals("0")){
             errors.rejectValue("div_sec", "Invalid.applicationForm.div_sec");
         }
-        
-        
-        
 
-
-        
-        
         
 
     }

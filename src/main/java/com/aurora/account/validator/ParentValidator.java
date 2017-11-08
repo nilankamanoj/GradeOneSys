@@ -9,7 +9,6 @@ import com.aurora.account.model.Parent;
 import com.aurora.account.service.ParentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
@@ -21,10 +20,6 @@ import org.springframework.validation.Validator;
 public class ParentValidator implements Validator{
     @Autowired
     private ParentService parentService;
-    
-    public void validate(Parent parentForm, BindingResult bindingResult) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public boolean supports(Class<?> aClass) {
@@ -41,7 +36,6 @@ public class ParentValidator implements Validator{
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "second_name", "NotEmpty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "initials", "NotEmpty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "occupation", "NotEmpty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "telephone_no", "NotEmpty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty");
         
         if(parent.getNIC().length()!=10){
@@ -58,14 +52,27 @@ public class ParentValidator implements Validator{
                 break;
             }
             else if(!Character.isLetter(part.charAt(0))){
-                errors.rejectValue("initials", "Invalid.applicationForm.initials");
+                errors.rejectValue("initials", "Invalid.parentForm.initials");
                 break;
             }
+        }
+        if(parent.getOccupation().chars().anyMatch(Character::isDigit)){
+            errors.rejectValue("occupation", "Invalid.parentForm.occupation");
+            
         }
         
         
         if(parent.getGender().trim().equals("NO")){
             errors.rejectValue("gender", "Invalid.parentForm.gender");
+        }
+        if (parent.getTelephone_no().length()==10){
+            try {
+               Integer.parseInt(parent.getTelephone_no().trim());
+           } catch (NumberFormatException e) {
+               errors.rejectValue("telephone_no", "Invalid.parentForm.telephone_no");
+           }
+        }else{
+            errors.rejectValue("telephone_no", "Invalid.parentForm.telephone_no");
         }
         
     }
