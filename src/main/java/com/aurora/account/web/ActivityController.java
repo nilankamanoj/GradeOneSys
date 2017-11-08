@@ -84,7 +84,7 @@ public class ActivityController {
     @RequestMapping(value = "/addschool", method = RequestMethod.GET)
      public String addschool(Model model, String ok){
          model.addAttribute("schoolForm", new School());
-         
+        setNav(model, 5);
          if (ok != null){
              
             model.addAttribute("message", "<div class='alert alert-info'>school added successfully.</div>");
@@ -96,10 +96,12 @@ public class ActivityController {
     public String addschool(@ModelAttribute("schoolForm") School schoolForm, BindingResult bindingResult, Model model) {
         schoolValidator.validate(schoolForm, bindingResult);
     if (bindingResult.hasErrors()) {
+        setNav(model, 5);
         return "addschool";
        }
 
        schoolService.saveApp(schoolForm);
+        setNav(model, 5);
         return "redirect:/addschool?ok";
     }
     

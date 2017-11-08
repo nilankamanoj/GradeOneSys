@@ -17,8 +17,8 @@ public class DbConnection {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/GradeOneSchema");
-        dataSource.setUsername("root");
-        dataSource.setPassword("");
+        dataSource.setUsername("finley");
+        dataSource.setPassword("password");
         JdbcTemplate stmt=new JdbcTemplate(dataSource);
         return stmt;
     }
