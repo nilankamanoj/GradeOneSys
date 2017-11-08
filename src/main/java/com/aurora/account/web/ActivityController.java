@@ -36,9 +36,9 @@ public class ActivityController {
      @RequestMapping(value = "/addapplication", method = RequestMethod.GET)
      public String addapplication(Model model, String ok){
          model.addAttribute("applicantForm", new Applicant());
-         setNav(model);
+         setNav(model,2);
          if (ok != null){
-             setNav(model);
+             setNav(model, 2);
             model.addAttribute("message", "<div class='alert alert-info'>application added successfully.</div>");
         }
          return "addapplication";
@@ -49,7 +49,7 @@ public class ActivityController {
        // userValidator.validate(applicantForm, bindingResult);
       appValidator.validate(applicantForm, bindingResult);
     if (bindingResult.hasErrors()) {
-        setNav(model);
+        setNav(model, 2);
             return "addapplication";
        }
 
@@ -61,7 +61,7 @@ public class ActivityController {
     @RequestMapping(value = "/viewusers", method = RequestMethod.GET)
     public String viewusers(Model model) {
         
-        setNav(model);
+        setNav(model,3);
         
         String content="<form id='contact' method='POST'  >";
         List<User> users = userService.getAll();
@@ -86,10 +86,10 @@ public class ActivityController {
             return null;
         }
     }
-    public void setNav(Model model){
+    public void setNav(Model model, int active){
         String currentUserName=getAuth();
         contentgen.setGen(currentUserName);
-        String nav=contentgen.getNavbar();
+        String nav=contentgen.getNavbar(active);
         model.addAttribute("nav", nav);
     }
     public void setProfile(Model model){

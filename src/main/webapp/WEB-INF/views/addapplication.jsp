@@ -18,8 +18,7 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-    
-    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
+
     <link href="${contextPath}/resources/css/css1.css" rel="stylesheet">
 
     <script type="text/javascript">
@@ -84,8 +83,9 @@
 
 <body>
 
-<div class="container">
+
 ${nav}
+
 <ul class="nav navbar-nav navbar-right">
 
     <li class="dropdown">
@@ -100,6 +100,7 @@ ${nav}
 </li>
 </ul>
 </div>
+<div class="container">
   <c:if test="${pageContext.request.userPrincipal.name != null}">
         <form id="logoutForm" method="POST" action="${contextPath}/logout">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

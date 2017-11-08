@@ -17,8 +17,6 @@
     <title>Profile</title>
 
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
-    <link href="${contextPath}/resources/css/css1.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/css2.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -30,7 +28,7 @@
 
 <body>
 
-<div class="container">
+
 ${nav}
 <ul class="nav navbar-nav navbar-right">
 
@@ -46,6 +44,7 @@ ${nav}
 </li>
 </ul>
 </div>
+<div class="container">
                           <c:if test="${pageContext.request.userPrincipal.name != null}">
         <form id="logoutForm" method="POST" action="${contextPath}/logout">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

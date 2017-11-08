@@ -15,8 +15,7 @@
 
     <title>Welcome</title>
 <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${contextPath}/resources/css/css1.css" rel="stylesheet">
-    <link href="${contextPath}/resources/css/css2.css" rel="stylesheet">
+      <link href="${contextPath}/resources/css/css2.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -26,7 +25,7 @@
 </head>
 <body>
 
-<div class="container">
+
     ${nav}
 
 <ul class="nav navbar-nav navbar-right">

@@ -33,9 +33,9 @@ public class UserController {
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model, String ok) {
         model.addAttribute("userForm", new User());
-        setNav(model);
+        setNav(model,1);
         if (ok != null){
-           setNav(model);
+           setNav(model,1);
             model.addAttribute("message", "<div class='alert alert-info'>user added successfully.</div>");
         }
         return "registration";
@@ -46,7 +46,7 @@ public class UserController {
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
-            setNav(model);
+            setNav(model,1);
             return "registration";
         }
 
@@ -68,7 +68,7 @@ public class UserController {
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String welcome(Model model, String error403,String error404) {
 
-        setNav(model);
+        setNav(model,0);
         if(error403!=null){
             model.addAttribute("message","<form id='contact'><div class='alert alert-danger'>Requested Page Access Denied!.</div><a href='welcome'>go back</a><form>");
         }
@@ -81,9 +81,9 @@ public class UserController {
     @RequestMapping(value = "/changepass", method = RequestMethod.GET)
     public String changepass(Model model, String ok) {
         model.addAttribute("changeForm", new TempUser());
-        setNav(model);
+        setNav(model,4);
         if (ok != null){
-            setNav(model);
+            setNav(model,4);
             model.addAttribute("message", "<div class='alert alert-info'>password changed successfully.</div>");
         }
         return "changepass";
@@ -99,7 +99,7 @@ public class UserController {
         
         changePassValidator.validate(changeForm, authUser, bindingResult);
          if (bindingResult.hasErrors()) {
-             setNav(model);
+             setNav(model,4);
             return "changepass";
        }
         
@@ -120,7 +120,7 @@ public class UserController {
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String profile(Model model) {
         
-        setNav(model);
+        setNav(model,4);
         setProfile(model);
         
         return "profile";
@@ -136,10 +136,10 @@ public class UserController {
             return null;
         }
     }
-    public void setNav(Model model){
+    public void setNav(Model model,int active){
         String currentUserName=getAuth();
         contentgen.setGen(currentUserName);
-        String nav=contentgen.getNavbar();
+        String nav=contentgen.getNavbar(active);
         model.addAttribute("nav", nav);
     }
     public void setProfile(Model model){
