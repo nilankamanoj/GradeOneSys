@@ -19,7 +19,7 @@ public class SchoolRowMapper implements RowMapper {
     public Object mapRow(ResultSet rs, int i) throws SQLException {
         School school = new School();
 
-            school.setSch_id(rs.getString("id"));
+        school.setSch_id(rs.getString("id"));
         return school;
     }
     

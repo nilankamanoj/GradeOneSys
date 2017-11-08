@@ -133,7 +133,7 @@ ${nav}
                         <div class="form-group ${status.error ? 'has-error' : ''}">
                 <form:select type="text" path="province" class="form-control" id="continent" onchange="countryChange(this);"
                             autofocus="true">
-                    <form:option value="empty">Select a District</form:option>
+                    <form:option value="empty">Select a Province</form:option>
                     <form:option value="Northern">Northern</form:option>
                     <form:option value="NorthWestern">NorthWestern</form:option>
                     <form:option value="Western">Western</form:option>
@@ -152,7 +152,7 @@ ${nav}
                         <div class="form-group ${status.error ? 'has-error' : ''}">
                 <form:select type="text" path="district" class="form-control" id="country"
                             autofocus="true">
-                    <form:option value="0">Select a district</form:option>
+                    <form:option value="0">Select a District</form:option>
                 </form:select>
                 <form:errors path="district"></form:errors>
             </div>

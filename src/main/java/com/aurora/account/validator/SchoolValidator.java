@@ -5,7 +5,6 @@
  */
 package com.aurora.account.validator;
 
-
 import com.aurora.account.model.School;
 import com.aurora.account.service.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,18 +37,22 @@ public class SchoolValidator implements Validator{
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "division", "NotEmpty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "eligible_count", "NotEmpty");
          
-        if(!school.getSch_id().chars().allMatch( Character::isDigit )){
+       if(school.getSch_id().length()!=8 || !school.getSch_id().chars().allMatch( Character::isDigit )){
             errors.rejectValue("sch_id", "Invalid.schoolForm.schoolId");
         }
-         if(schoolService.getOne(school.getSch_id())!=null){
+        if(schoolService.getOne(school.getSch_id())!=null){
            errors.rejectValue("sch_id", "Duplicate.schoolForm.schoolId"); 
         }
-         if(school.getDistrict().trim().equals("empty")){
-            errors.rejectValue("district", "Invalid.schoolForm.district");
+         if(school.getProvince().trim().equals("empty")){
+            errors.rejectValue("province", "Invalid.schoolForm.province");
         }
-        if(school.getProvince().trim().equals("0")){
-            errors.rejectValue("div_sec", "Invalid.schoolForm.province");
+        if(school.getDivision().trim().equals("0")){
+            errors.rejectValue("division", "Invalid.schoolForm.division");
+        } 
+        try {
+            Integer.parseInt(school.getEligible_count().trim());
+        } catch (NumberFormatException e) {
+            errors.rejectValue("eligible_count", "Invalid.schoolForm.eligible_count");
         }
-        
     }
 }
