@@ -10,6 +10,7 @@
     <http auto-config="true">
         <intercept-url pattern="/" access="hasRole('ROLE_USER')"/>
         <intercept-url pattern="/addapplication" access="hasRole('ROLE_INSERT')"/>
+        <intercept-url pattern="/addschool" access="hasRole('ROLE_INSERT')"/>
         <intercept-url pattern="/welcome" access="hasRole('ROLE_USER')"/>
         <intercept-url pattern="/changepass" access="hasRole('ROLE_USER')"/>
         <intercept-url pattern="/profile" access="hasRole('ROLE_USER')"/>

@@ -2,10 +2,13 @@ package com.aurora.account.web;
 
 import com.aurora.account.Util.ContentGenerator;
 import com.aurora.account.model.Applicant;
+import com.aurora.account.model.School;
 import com.aurora.account.model.User;
 import com.aurora.account.service.ApplicantService;
+import com.aurora.account.service.SchoolService;
 import com.aurora.account.service.UserService;
 import com.aurora.account.validator.ApplicationValidator;
+import com.aurora.account.validator.SchoolValidator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -30,7 +33,10 @@ public class ActivityController {
     private ApplicationValidator appValidator;
     @Autowired
     private ApplicantService appService;
-
+    @Autowired
+    private SchoolValidator schoolValidator;
+    @Autowired
+    private SchoolService schoolService;
 
 
      @RequestMapping(value = "/addapplication", method = RequestMethod.GET)
@@ -74,7 +80,29 @@ public class ActivityController {
         return "viewusers";
     }
     
+ 
+    @RequestMapping(value = "/addschool", method = RequestMethod.GET)
+     public String addschool(Model model, String ok){
+         model.addAttribute("schoolForm", new School());
+         
+         if (ok != null){
+             
+            model.addAttribute("message", "<div class='alert alert-info'>school added successfully.</div>");
+        }
+         return "addschool";
+     }
+     
+    @RequestMapping(value = "/addschool", method = RequestMethod.POST)
+    public String addschool(@ModelAttribute("schoolForm") School schoolForm, BindingResult bindingResult, Model model) {
+        schoolValidator.validate(schoolForm, bindingResult);
+    if (bindingResult.hasErrors()) {
+        return "addschool";
+       }
 
+       schoolService.saveApp(schoolForm);
+        return "redirect:/addschool?ok";
+    }
+    
     
     public String getAuth(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
