@@ -50,6 +50,11 @@
 
         </div>
     </section>
+    <footer id="footer">
+        <ul class="copyright">
+            <li>Grade One Evaluating System - Ministry Of Education</li>
+        </ul>
+    </footer>
 
     <script src="${contextPath}/resources/assets/js/jquery.min.js"></script>
     <script src="${contextPath}/resources/assets/js/jquery.dropotron.min.js"></script>

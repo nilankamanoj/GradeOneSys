@@ -150,6 +150,11 @@
         </form:form>
         </div>
     </section>
+        <footer id="footer">
+            <ul class="copyright">
+                <li>Grade One Evaluating System - Ministry Of Education</li>
+            </ul>
+        </footer>
 </div>
 <script src="${contextPath}/resources/assets/js/jquery.dropotron.min.js"></script>
 <script src="${contextPath}/resources/assets/js/jquery.scrolly.min.js"></script>
