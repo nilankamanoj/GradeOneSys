@@ -1,16 +1,11 @@
 package com.aurora.account.web;
 
 import com.aurora.account.Util.ContentGenerator;
-import com.aurora.account.model.Applicant;
-import com.aurora.account.model.Parent;
-import com.aurora.account.model.School;
-import com.aurora.account.model.User;
-import com.aurora.account.service.ApplicantService;
-import com.aurora.account.service.ParentService;
-import com.aurora.account.service.SchoolService;
-import com.aurora.account.service.UserService;
+import com.aurora.account.model.*;
+import com.aurora.account.service.*;
 import com.aurora.account.validator.ApplicationValidator;
 import com.aurora.account.validator.ParentValidator;
+import com.aurora.account.validator.PastPupilValidator;
 import com.aurora.account.validator.SchoolValidator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +39,10 @@ public class ActivityController {
     private ParentValidator parentValidator;
     @Autowired
     private ParentService parentService;
+    @Autowired
+    private PastPupilService pastPupilService;
+    @Autowired
+    private PastPupilValidator pastPupilValidator;
 
 
      @RequestMapping(value = "/addapplication", method = RequestMethod.GET)
@@ -133,6 +132,27 @@ public class ActivityController {
         parentService.saveApp(parentForm);
         setNav(model,6);
         return "redirect:/addparent?ok";
+    }
+    @RequestMapping(value = "/addpastpupil", method = RequestMethod.GET)
+    public String addPastPupil(Model model, String ok){
+        model.addAttribute("pastPupilForm", new PastPupil());
+        if (ok != null){
+            model.addAttribute("message", "<div class='alert alert-info'>Past pupil details added successfully.</div>");
+        }
+        setNav(model, 7);
+        return "addpastpupil";
+    }
+
+    @RequestMapping(value = "/addpastpupil", method = RequestMethod.POST)
+    public String addPastPupil(@ModelAttribute("pastPupilForm") PastPupil pastPupilForm, BindingResult bindingResult, Model model){
+        pastPupilValidator.validate(pastPupilForm, bindingResult);
+        setNav(model, 7);
+        if (bindingResult.hasErrors()){
+            return "addpastpupil";
+        } else {
+            pastPupilService.savePastPupil(pastPupilForm);
+            return "redirect:/addpastpupil?ok";
+        }
     }
     
     public String getAuth(){

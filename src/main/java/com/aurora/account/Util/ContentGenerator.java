@@ -38,6 +38,7 @@ public class ContentGenerator {
             add("");//default          4
             add("");//addschool        5
             add("");//addparent        6
+            add("");//addpasspupil     7
         }};
 
         this.navlist.set(active,"active");
@@ -48,6 +49,7 @@ public class ContentGenerator {
            navbar+="<li class='"+navlist.get(2)+"'><a href='addapplication'>Add application</a></li>";
             navbar+="<li class='"+navlist.get(5)+"'><a href='addschool'>Add School</a></li>";
             navbar+="<li class='"+navlist.get(6)+"'><a href='addparent'>Add Parent</a></li>";
+            navbar+="<li class='"+navlist.get(7)+"'><a href='addpastpupil'>Add Past Pupil</a></li>";
         }
         if(occupation.trim().equals("admin")){
            navbar+="<li class='"+navlist.get(1)+"'><a href='registration' >Add user</a></li>";

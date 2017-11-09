@@ -119,7 +119,7 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
     </form:form>
         </div>
-<!-- /container -->
+<!<-- /container -->
 
         <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
     </body>
