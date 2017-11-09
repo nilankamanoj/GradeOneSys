@@ -52,14 +52,14 @@ public class ContentGenerator {
 
 
         if(occupation.trim().equals("data entry")){
-           navbar+="<li class='"+navlist.get(2)+"'><a href='addapplication'>Add application</a></li>";
-            navbar+="<li class='"+navlist.get(5)+"'><a href='addschool'>Add School</a></li>";
-            navbar+="<li class='"+navlist.get(6)+"'><a href='addparent'>Add Parent</a></li>";
-            navbar+="<li class='"+navlist.get(7)+"'><a href='addpastpupil'>Add Past Pupil</a></li>";
+           navbar+="<li class="+navlist.get(2)+"><a href='addapplication'>Add application</a></li>";
+            navbar+="<li class="+navlist.get(5)+"><a href='addschool'>Add School</a></li>";
+            navbar+="<li class="+navlist.get(6)+"><a href='addparent'>Add Parent</a></li>";
+            navbar+="<li class="+navlist.get(7)+"><a href='addpastpupil'>Add Past Pupil</a></li>";
         }
         if(occupation.trim().equals("admin")){
-           navbar+="<li class='"+navlist.get(1)+"'><a href='registration' >Add user</a></li>";
-           navbar+="<li class='"+navlist.get(3)+"'><a href='viewusers'>View Users</a></li>";
+           navbar+="<li class="+navlist.get(1)+"><a href='registration' >Add user</a></li>";
+           navbar+="<li class="+navlist.get(3)+"><a href='viewusers'>View Users</a></li>";
         }
 
 

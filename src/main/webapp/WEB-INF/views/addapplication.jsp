@@ -131,7 +131,7 @@
                     <form:errors path="div_grama"></form:errors>
                 </div>
             </spring:bind>
-
+<div class="row">
             <spring:bind path="electro_cert">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
                     <form:checkbox path="electro_cert" value="true" label="electrical certified"></form:checkbox>
@@ -145,7 +145,7 @@
                     <form:errors path="grama_cert"></form:errors>
                 </div>
             </spring:bind>
-
+</div>
             <button class="button special" type="submit">Submit</button>
         </form:form>
         </div>

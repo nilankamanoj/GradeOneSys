@@ -2227,7 +2227,8 @@
 					color: inherit;
 					display: inline-block;
 					line-height: 1em;
-					padding: 0.6em 0.75em;
+					font-size: 10px;
+					padding: 0.3em 0.02em;
 					text-decoration: none;
 				}
 
