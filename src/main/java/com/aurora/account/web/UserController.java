@@ -57,7 +57,7 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
         if (error != null)
-            model.addAttribute("error", "Your username and password is invalid.");
+            model.addAttribute("error", "Invalid Credentials!.");
 
         if (logout != null)
             model.addAttribute("message", "<div class='alert alert-info'>You have been logged out successfully.</div>");
@@ -70,10 +70,10 @@ public class UserController {
 
         setNav(model,0);
         if(error403!=null){
-            model.addAttribute("message","<form id='contact'><div class='alert alert-danger'>Requested Page Access Denied!.</div><a href='welcome'>go back</a><form>");
+            model.addAttribute("message",contentgen.get403());
         }
         if(error404!=null){
-            model.addAttribute("message","<form id='contact'><div class='alert alert-danger'>Requested Page Not Found!.</div><a href='welcome'>go back</a><form>");
+            model.addAttribute("message",contentgen.get404());
         }
         return "welcome";
     }

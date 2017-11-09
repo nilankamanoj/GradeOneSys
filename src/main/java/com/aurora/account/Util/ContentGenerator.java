@@ -41,10 +41,16 @@ public class ContentGenerator {
             add("");//addpasspupil     7
         }};
 
-        this.navlist.set(active,"active");
+        this.navlist.set(active,"\"current\"");
 
         navbar="";
-        navbar+="<div id='navbar' class='navbar-collapse collapse'><ul class='nav navbar-nav'><li class='"+navlist.get(0)+"'><a href='welcome'>Home</a></li>";
+        navbar+="<header id=\"header\" class=\"alt\">                                            "+
+                "        <h1 id=\"logo\"><a href=\"welcome\">Home</a></h1>                       "+
+                "        <nav id=\"nav\">                                                        "+
+                "            <ul>                                                                "+
+                "               <li class="+navlist.get(0)+"><a href=\"welcome\">Welcome</a></li>";
+
+
         if(occupation.trim().equals("data entry")){
            navbar+="<li class='"+navlist.get(2)+"'><a href='addapplication'>Add application</a></li>";
             navbar+="<li class='"+navlist.get(5)+"'><a href='addschool'>Add School</a></li>";
@@ -55,7 +61,19 @@ public class ContentGenerator {
            navbar+="<li class='"+navlist.get(1)+"'><a href='registration' >Add user</a></li>";
            navbar+="<li class='"+navlist.get(3)+"'><a href='viewusers'>View Users</a></li>";
         }
-        navbar+="</ul>";
+
+
+        navbar+="      <li class=\"submenu\">                                                                  "+
+                "            <a href=\"#\">&nbsp;Hi&nbsp;"+user.getUsername()+"&nbsp;</a>                            "+
+                "                <ul>                                                                          "+
+                "                    <li><a href=\"profile\">View Profile</a></li>                             "+
+                "                    <li><a href=\"changepass\">Change Password</a></li>                       "+
+                "                    <li><a onclick=\"document.forms['logoutForm'].submit()\">Sign Out</a></li>"+
+                "                </ul>                                                                         "+
+                "            </li>                                                                             "+
+                "        </ul>                                                                                 "+
+                "    </nav>                                                                                    "+
+                "</header>                                                                                     ";
         return navbar;
     }
     
@@ -63,6 +81,33 @@ public class ContentGenerator {
         String profile="";
         profile+="<p><b>User Name : </b>"+" "+user.getUsername()+"<br><b>Occupation : </b>"+" "+occupation+"<p>";
         return profile;
+    }
+
+    public String get404(){
+        return "<div class=\"inner\">                                                              "+
+                "  <header>                                                                         "+
+                "     <h2>Error!</h2>                                                               "+
+                "  </header>                                                                        "+
+                "  <p>Requested Page Unavailable</p>                                                "+
+                "  <footer>                                                                         "+
+                "      <ul class=\"buttons vertical\">                                              "+
+                "         <li><a href=\"welcome\" class=\"button fit scrolly\">Go Back Home</a></li>"+
+                "      </ul>                                                                        "+
+                "  </footer>                                                                        "+
+                "</div>                                                                             ";
+    }
+    public String get403(){
+        return "<div class=\"inner\">                                                              "+
+                "  <header>                                                                         "+
+                "     <h2>Error!</h2>                                                               "+
+                "  </header>                                                                        "+
+                "  <p>You Haven't Access to Requested Page</p>                                      "+
+                "  <footer>                                                                         "+
+                "      <ul class=\"buttons vertical\">                                              "+
+                "         <li><a href=\"welcome\" class=\"button fit scrolly\">Go Back Home</a></li>"+
+                "      </ul>                                                                        "+
+                "  </footer>                                                                        "+
+                "</div>                                                                             ";
     }
     
     

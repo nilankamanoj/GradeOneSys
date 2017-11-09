@@ -1,0 +1,41 @@
+.alert-danger {
+    color: #f2606d;
+
+    }
+
+.alert-danger hr {
+    border-top-color: #e4b9c0
+}
+
+.alert-danger .alert-link {
+    color: #843534
+}
+.alert-info {
+    color: #96beff;
+
+}
+
+.alert-info hr {
+    border-top-color: #a6e1ec
+}
+
+.alert-info .alert-link {
+    color: #245269
+}
+.select_mate{
+    margin-bottom: 1em;
+    min-width: 10em;
+    position:relative;
+    margin-right: 1em;
+    min-height: 2em;
+    max-height:2em;
+    overflow:hidden;
+    top: .5em;
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
+    color: #89ffe1;
+    border-color:aliceblue;
+    background-color:transparent
+
+}
