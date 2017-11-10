@@ -15,6 +15,8 @@
     <script src="${contextPath}/resources/js/datepick1.js"></script>
     <script src="${contextPath}/resources/js/datepick2.js"></script>
     <script src="${contextPath}/resources/assets/js/customize.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>
+    <script src="${contextPath}/resources/validator/validateApp.js"></script>
     <script>
         $( function() {
             $( ".datepicker-1" ).datepicker({ dateFormat: 'yy-mm-dd',changeYear: true,changeMonth: true });
