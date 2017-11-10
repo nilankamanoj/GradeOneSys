@@ -80,8 +80,8 @@
 
                 <spring:bind path = "achievements">
                     <div class="form-group ${status.error ? 'has-error' : ''}">
-                        <form:input type="text" path="achievements" class="form-control" placeholder="Achievements"
-                                    autofocus="true"></form:input>
+                        <form:textarea type="text" path="achievements" class="form-control" placeholder="Achievements"
+                                    autofocus="true"></form:textarea>
                         <form:errors path="achievements"></form:errors>
                     </div>
                 </spring:bind>
