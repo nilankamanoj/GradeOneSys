@@ -6,12 +6,22 @@ jQuery.validator.addMethod("checkDrop", function(value, element) {
     else return false;
 });
 jQuery.validator.addMethod("checkNic", function(value, element) {
- if(/^\d+$/.test(value.substr(0,10)) && value[value.length-1] in["v","V"]){
-     return true;
- }
- else return false;
+    if(/^\d+$/.test(value.substr(0,9)) && (value.includes("v") || value.includes("V"))){
+        return true;
+    }
+    else return false;
 });
 
+jQuery.validator.addMethod("checkEmail", function(value, element) {
+    // allow any non-whitespace characters as the host part
+    return this.optional( element ) || /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@(?:\S{1,63})$/.test( value );
+});
+jQuery.validator.addMethod("checkTp", function(value, element) {
+    if(/^\d+$/.test(value) && value[0]=="0"){
+        return true;
+    }
+    else return false;
+});
 
 $(function() {
 
@@ -24,36 +34,29 @@ $(function() {
             first_name: "required",
             second_name: "required",
             initials:"required",
-            div_grama:"required",
-            Id:{
-                required: true,
-                minlength: 8,
-                maxlength: 8,
-                number: true
-
-            },
-            dob:{
-                required:true,
-                date:true
-            },
             gender:{
                 checkDrop:true
             },
-            district:{
-                checkDrop:true
-            },
-            div_sec:{
-                checkDrop:true
-            },
-            religion:{
-                checkDrop:true
-            },
             NIC:{
-               required:true,
+                required:true,
                 minlength: 10,
                 maxlength: 10,
-               checkNic:true
+                checkNic:true
+            },
+            email:{
+                required:true,
+                checkEmail:true
+            },
+            telephone_no:{
+                required:true,
+                minlength: 10,
+                maxlength: 10,
+                checkTp:true
+            },
+            occupation:{
+                required:true
             }
+
 
 
 
@@ -61,17 +64,14 @@ $(function() {
         },
         // Specify validation error messages
         messages: {
-            Id:"Enter Valid Id",
             first_name: "enter first name",
             second_name: "enter second name",
-            dob:"Enter valid DOB",
             initials:"enter initials",
-            div_grama:"enter grama division",
             gender:"select gender",
-            district:"select district",
-            div_sec:"select division",
-            religion:"select religion",
-            NIC:"enter Valid Nic"
+            NIC:"enter valid Nic",
+            email:"enter valid email",
+            telephone_no:"enter valid TP",
+            occupation:"enter an occupation"
         },
         // Make sure the form is submitted to the destination defined
         // in the "action" attribute of the form when valid

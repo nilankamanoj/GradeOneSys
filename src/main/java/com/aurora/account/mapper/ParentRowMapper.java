@@ -20,7 +20,7 @@ public class ParentRowMapper implements RowMapper{
     public Object mapRow(ResultSet rs, int i) throws SQLException {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         Parent parent = new Parent();
-        parent.setNIC(rs.getString("NIC"));
+        parent.setNIC(rs.getString("id"));
         return parent;
     }
     
