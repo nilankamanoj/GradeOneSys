@@ -11,6 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="${contextPath}/resources/assets/css/main.css" />
     <link rel="stylesheet" href="${contextPath}/resources/assets/css/customize.css" />
+    <script src="${contextPath}/resources/assets/js/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>
+    <script src="${contextPath}/resources/validator/validateChangePass.js"></script>
 </head>
 <body class="index">
 <div id="page-wrapper">
@@ -61,7 +64,6 @@
             </ul>
         </footer>
 </div>
-<script src="${contextPath}/resources/assets/js/jquery.min.js"></script>
 <script src="${contextPath}/resources/assets/js/jquery.dropotron.min.js"></script>
 <script src="${contextPath}/resources/assets/js/jquery.scrolly.min.js"></script>
 <script src="${contextPath}/resources/assets/js/jquery.scrollgress.min.js"></script>
