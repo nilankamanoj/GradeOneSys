@@ -12,13 +12,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="${contextPath}/resources/assets/css/main.css" />
     <link rel="stylesheet" href="${contextPath}/resources/assets/css/customize.css" />
+    <script src="${contextPath}/resources/assets/js/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>
+    <script src="${contextPath}/resources/validator/validateLogin.js"></script>
 </head>
 <body class="index">
 <div id="page-wrapper">
 
     <!-- Header -->
     <header id="header" class="alt">
-        <h1 id="logo"><a href="#">Grade One Evaluating System</a></h1>
+        <h1 id="logo"><a href="login">Grade One Evaluating System</a></h1>
     </header>
 
     <section id="banner">
@@ -55,8 +58,6 @@
             <li>Grade One Evaluating System - Ministry Of Education</li>
         </ul>
     </footer>
-
-    <script src="${contextPath}/resources/assets/js/jquery.min.js"></script>
     <script src="${contextPath}/resources/assets/js/jquery.dropotron.min.js"></script>
     <script src="assets/js/jquery.scrolly.min.js"></script>
     <script src="${contextPath}/resources/assets/js/jquery.scrollgress.min.js"></script>
