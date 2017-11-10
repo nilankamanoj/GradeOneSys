@@ -1,10 +1,11 @@
 jQuery.validator.addMethod("checkDrop", function(value, element) {
-    // allow any non-whitespace characters as the host part
+
     if(value!="NO"&& value!="empty"&& value!="0"){
         return true;
     }
     else return false;
 });
+
 jQuery.validator.addMethod("checkNic", function(value, element) {
  if(/^\d+$/.test(value.substr(0,10)) && value[value.length-1] in["v","V"]){
      return true;
@@ -16,11 +17,8 @@ jQuery.validator.addMethod("checkNic", function(value, element) {
 $(function() {
 
     $("form[id='contact']").validate({
-        // Specify validation rules
         rules: {
-            // The key name on the left side is the name attribute
-            // of an input field. Validation rules are defined
-            // on the right side
+
             first_name: "required",
             second_name: "required",
             initials:"required",
@@ -59,7 +57,7 @@ $(function() {
 
 
         },
-        // Specify validation error messages
+
         messages: {
             Id:"Enter Valid Id",
             first_name: "enter first name",
@@ -73,8 +71,7 @@ $(function() {
             religion:"select religion",
             NIC:"enter Valid Nic"
         },
-        // Make sure the form is submitted to the destination defined
-        // in the "action" attribute of the form when valid
+
         submitHandler: function(form) {
             form.submit();
         }

@@ -60,8 +60,9 @@
     </section>
         <footer id="footer">
             <ul class="copyright">
-                <li>Grade One Evaluating System - Ministry Of Education</li>
+                <li><strong>Grade One Evaluating System - Ministry Of Education</strong></li>
             </ul>
+            <img width="130px" height="auto" src="${contextPath}/resources/images/Aurora-logo.png" alt="">
         </footer>
 </div>
 <script src="${contextPath}/resources/assets/js/jquery.dropotron.min.js"></script>
