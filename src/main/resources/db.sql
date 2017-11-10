@@ -187,6 +187,8 @@ insert into user_role values('1','2');
 
 insert into role values('3','ROLE_INSERT');
 
+ALTER TABLE `past_pupil` CHANGE `past_pupil_member_id` `past_pupil_member_id` VARCHAR(45) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
+
 
 
 

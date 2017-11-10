@@ -42,6 +42,10 @@ public class PastPupilValidator implements Validator{
                 && id.subSequence(0,8).chars().allMatch(Character::isDigit))){
             errors.rejectValue("id", "Invalid.pastPupilForm.id");
         }
+        else if(pastPupilService.getOne(id)!=null){
+            errors.rejectValue("id", "Dupplicate.pastPupilForm.id");
+
+        }
         if (school_id.length()>0 && !((school_id.chars().allMatch(Character::isDigit)) && (schoolService.getOne(school_id)!=null))) {
             errors.rejectValue("school_id", "Invalid.pastPupilForm.school_id");
         }
