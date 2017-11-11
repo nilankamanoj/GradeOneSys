@@ -1,107 +1,92 @@
 package com.aurora.account.web;
 
-import com.aurora.account.Util.ContentGenerator;
 import com.aurora.account.model.TempUser;
 import com.aurora.account.model.User;
 import com.aurora.account.service.UserService;
 import com.aurora.account.validator.ChangePassValidator;
-import com.aurora.account.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import java.util.List;
 
 
 @Controller
-public class UserController {
-    @Autowired
-    private ContentGenerator contentgen;
+public class UserController extends AbstractController
+{
+
     @Autowired
     private UserService userService;
     @Autowired
     private ChangePassValidator changePassValidator;
-    @Autowired
-    private UserValidator userValidator;
-
-    @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public String registration(Model model, String ok) {
-        model.addAttribute("userForm", new User());
-        setNav(model,1);
-        if (ok != null){
-           setNav(model,1);
-            model.addAttribute("message", "<div class='alert alert-info'>user added successfully.</div>");
-        }
-        return "registration";
-    }
-
-    @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
-        userValidator.validate(userForm, bindingResult);
-
-        if (bindingResult.hasErrors()) {
-            setNav(model,1);
-            return "registration";
-        }
-
-        userService.save(userForm);
-        return "redirect:/registration?ok";
-    }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model, String error, String logout) {
+    public String login(Model model, String error, String logout)
+    {
         if (error != null)
+        {
             model.addAttribute("error", "Invalid Credentials!.");
+        }
 
         if (logout != null)
+        {
             model.addAttribute("message", "<div class='alert alert-info'>You have been logged out successfully.</div>");
+        }
 
         return "login";
     }
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
-    public String welcome(Model model, String error403,String error404) {
-
+    public String welcome(Model model, String error403,String error404)
+    {
         setNav(model,0);
-        if(error403!=null){
-            model.addAttribute("message",contentgen.get403());
+
+        if(error403!=null)
+        {
+        model.addAttribute("message",contentgen.get403());
         }
-        if(error404!=null){
+        
+        if(error404!=null)
+        {
             model.addAttribute("message",contentgen.get404());
         }
+
         return "welcome";
     }
     
     @RequestMapping(value = "/changepass", method = RequestMethod.GET)
-    public String changepass(Model model, String ok) {
+    public String changepass(Model model, String ok)
+    {
         model.addAttribute("changeForm", new TempUser());
         setNav(model,4);
-        if (ok != null){
+
+        if (ok != null)
+        {
             setNav(model,4);
             model.addAttribute("message", "<div class='alert alert-info'>password changed successfully.</div>");
         }
+
         return "changepass";
     }
 
     
     @RequestMapping(value = "/changepass", method = RequestMethod.POST)
-    public String changepass(@ModelAttribute("changeForm") TempUser changeForm, BindingResult bindingResult, Model model) {
+    public String changepass(@ModelAttribute("changeForm") TempUser changeForm, BindingResult bindingResult, Model model)
+    {
         User authUser = null;
-       String currentUserName=getAuth();
+        String currentUserName=getAuth();
         authUser=userService.findByUsername(currentUserName);
         User tempUser=new User();
-        
         changePassValidator.validate(changeForm, authUser, bindingResult);
-         if (bindingResult.hasErrors()) {
-             setNav(model,4);
+
+        if (bindingResult.hasErrors()) 
+        {
+            setNav(model,4);
             return "changepass";
-       }
+        }
         
         tempUser.setUsername("tempUser");
         tempUser.setOccupation(authUser.getOccupation());
@@ -111,39 +96,37 @@ public class UserController {
         tempUser.setUsername(authUser.getUsername());
         
         userService.save(tempUser);
-        
-
-        
+               
         return "redirect:/changepass?ok";
     }
     
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
-    public String profile(Model model) {
+    public String profile(Model model) 
+    {
         
         setNav(model,4);
         setProfile(model);
         
         return "profile";
     }
-    
-    public String getAuth(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (!(authentication instanceof AnonymousAuthenticationToken)) {
-        String currentUserName = authentication.getName();
-        return currentUserName;
+
+    @RequestMapping(value = "/viewusers", method = RequestMethod.GET)
+    public String viewusers(Model model) 
+    {
+
+        setNav(model,3);
+        String content="<form id='contact' method='POST'  >";
+        List<User> users = userService.getAll();
+
+        for(User user : users)
+        {
+            contentgen.setGen(user.getUsername());
+            content+=(contentgen.getProfile()+"<hr><br>");
         }
-        else{
-            return null;
-        }
-    }
-    public void setNav(Model model,int active){
-        String currentUserName=getAuth();
-        contentgen.setGen(currentUserName);
-        String nav=contentgen.getNavbar(active);
-        model.addAttribute("nav", nav);
-    }
-    public void setProfile(Model model){
-        String profile = contentgen.getProfile();
-        model.addAttribute("profile", profile);
+
+        content+="</form>";
+        model.addAttribute("content", content);
+        
+        return "viewusers";
     }
 }
