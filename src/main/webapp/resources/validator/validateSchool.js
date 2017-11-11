@@ -7,13 +7,13 @@ jQuery.validator.addMethod("checkDrop", function(value, element) {
 
 
 });
-jQuery.validator.addMethod("checkUnique", function(value, element) {
-
-    if(!ids.includes(value)){
-        return true;
-    }
-    else return false;
+jQuery.validator.addMethod("checkSchool", function(value, element) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", "checkSchId?sch_id="+value, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText=="true";
 });
+
 
 $(function() {
 
@@ -25,7 +25,7 @@ $(function() {
                 minlength:8,
                 maxlength:8,
                 digits: true,
-                checkUnique:true
+                checkSchool:true
             },
 
             name:{
@@ -66,7 +66,13 @@ $(function() {
         },
         // Specify validation error messages
         messages: {
-            sch_id:"enter valid id",
+            sch_id:{
+                required:"enter valid id",
+                minlength:"enter valid id",
+                maxlength:"enter valid id",
+                digits: "enter valid id",
+                checkSchool:"enter unique id"
+            },
             name:"enter valid name",
             division:"enter valid division",
             eligible_count:"enter valid count",

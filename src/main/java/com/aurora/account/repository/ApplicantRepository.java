@@ -29,14 +29,8 @@ public class ApplicantRepository extends Repository{
     }
 
     @Override
-    public List fetchIds() {
-        String query="SELECT DISTINCT application_id from applicant";
-        return (List<String>) super.stmt.queryForList(query, String.class);
-    }
-
-    @Override
-    public String getJavaScriptIdList() {
-        return super.toJavascriptArray(this.fetchIds());
+    public boolean checkAvailability(String id) {
+        return (getOne(id)==null);
     }
 
 

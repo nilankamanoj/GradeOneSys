@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class PastPupilController extends AbstractController
@@ -26,8 +27,6 @@ public class PastPupilController extends AbstractController
     public String addPastPupil(Model model, String ok)
     {
         model.addAttribute("pastPupilForm", new PastPupil());
-        model.addAttribute("idList",pastPupilService.getJavaScriptIds());
-        model.addAttribute("schList",schoolService.getJavaScriptIds());
 
         if (ok != null)
         {
@@ -53,5 +52,26 @@ public class PastPupilController extends AbstractController
             pastPupilService.savePastPupil(pastPupilForm);
             return "redirect:/addpastpupil?ok";
         }
+    }
+
+    @RequestMapping("checkId")
+    @ResponseBody
+    public String  checkUser(String id){
+
+        return String.valueOf(pastPupilService.checkAvailability(id));
+    }
+
+    @RequestMapping("checkSchStuCombination")
+    @ResponseBody
+    public String  checkSchStu(String sch_id, String stu_id){
+
+        return String.valueOf(pastPupilService.availbleCombSchStu(sch_id, stu_id));
+    }
+
+    @RequestMapping("checkSchMemCombination")
+    @ResponseBody
+    public String  checkSchMem(String sch_id,String mem_id){
+
+        return String.valueOf(pastPupilService.availbleCombSchMem(sch_id, mem_id));
     }
 }

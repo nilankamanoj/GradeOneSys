@@ -17,8 +17,7 @@ public class PastPupilService {
     public PastPupil getOne(String id){
         return (PastPupil) pastRepo.getOne(id);
     }
-    public List getIds(){return pastRepo.fetchIds();}
-    public String getJavaScriptIds(){return pastRepo.getJavaScriptIdList();}
+    public boolean checkAvailability(String id){return pastRepo.checkAvailability(id);}
     public boolean availbleCombSchStu(String schId,String stuId){return pastRepo.availbleCombSchStu(schId,stuId);}
     public boolean availbleCombSchMem(String schId,String memId){return pastRepo.availbleCombSchMem(schId,memId);}
 }

@@ -12,4 +12,6 @@ public interface UserService {
     boolean verifyPassword(TempUser tmp,User user);
     
     public List<User>getAll();
+
+    public boolean availabaleUserName(String username);
 }

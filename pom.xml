@@ -100,8 +100,9 @@
             <artifactId>spring-context</artifactId>
             <version>4.2.0.RELEASE</version>
             <type>jar</type>
-        </dependency>
-    </dependencies>
+        </dependency><dependency/>
+    </depen<dependency><groupId>javax</groupId><artifactId>javaee-web-api</artifactId><version>7.0</version></dependency><dependency><groupId>javax</groupId><artifactId>javaee-web-api</artifactId><version>7.0</version></dependency>
+    es>
     <build>
         <plugins>
             <plugin>

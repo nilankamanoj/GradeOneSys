@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
@@ -24,7 +25,6 @@ public class SchoolController extends AbstractController
     public String addschool(Model model, String ok)
     {
         model.addAttribute("schoolForm", new School());
-        model.addAttribute("idList",schoolService.getJavaScriptIds());
         setNav(model, 5);
 
         if (ok != null)
@@ -50,5 +50,12 @@ public class SchoolController extends AbstractController
         schoolService.saveApp(schoolForm);
         setNav(model, 5);
         return "redirect:/addschool?ok";
+    }
+
+    @RequestMapping("checkSchId")
+    @ResponseBody
+    public String  checkUser(String sch_id){
+
+        return String.valueOf(schoolService.checkAvailability(sch_id));
     }
 }

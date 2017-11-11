@@ -18,7 +18,6 @@ public class ApplicantService {
     public Applicant getOne(String id){
         return(Applicant) appRepo.getOne(id);
     }
-    public List getIds(){return appRepo.fetchIds();}
-    public String getJavaScriptIds(){return appRepo.getJavaScriptIdList();}
+    public boolean checkAvailability(String id){return appRepo.checkAvailability(id);}
     
 }

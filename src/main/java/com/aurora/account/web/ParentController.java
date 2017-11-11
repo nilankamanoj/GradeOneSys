@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class ParentController extends AbstractController
@@ -23,7 +24,6 @@ public class ParentController extends AbstractController
     public String addparent(Model model, String ok)
     {
         model.addAttribute("parentForm", new Parent());
-        model.addAttribute("idList",parentService.getJavaScriptIds());
         setNav(model,6);
 
         if (ok != null)
@@ -51,4 +51,12 @@ public class ParentController extends AbstractController
         setNav(model,6);
         return "redirect:/addparent?ok";
     }
+
+    @RequestMapping("checkNIC")
+    @ResponseBody
+    public String  checkUser(String NIC){
+
+        return String.valueOf(parentService.checkAvailability(NIC));
+    }
+
 }

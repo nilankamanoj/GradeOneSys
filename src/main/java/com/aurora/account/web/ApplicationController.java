@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class ApplicationController extends AbstractController
@@ -23,7 +24,6 @@ public class ApplicationController extends AbstractController
     public String addapplication(Model model, String ok)
     {
         model.addAttribute("applicantForm", new Applicant());
-        model.addAttribute("idList",appService.getJavaScriptIds());
         setNav(model,2);
 
         if (ok != null)
@@ -48,5 +48,12 @@ public class ApplicationController extends AbstractController
 
         appService.saveApp(applicantForm);
         return "redirect:/addapplication?ok";
+    }
+
+    @RequestMapping("checkAppId")
+    @ResponseBody
+    public String  checkUser(String application_id){
+
+        return String.valueOf(appService.checkAvailability(application_id));
     }
 }

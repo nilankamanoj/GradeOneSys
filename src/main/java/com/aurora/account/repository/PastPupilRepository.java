@@ -28,17 +28,6 @@ public class PastPupilRepository extends Repository{
         
     }
 
-    @Override
-    public List fetchIds() {
-        String query="SELECT DISTINCT id from past_pupil";
-        return (List<String>) super.stmt.queryForList(query, String.class);
-    }
-
-    @Override
-    public String getJavaScriptIdList() {
-        return super.toJavascriptArray(this.fetchIds());
-    }
-
     public boolean availbleCombSchStu(String schId,String stuId){
         String query ="SELECT DISTINCT id FROM past_pupil WHERE student_id='"+stuId+"' AND school_id='"+schId+"'";
         return ((List<String>) super.stmt.queryForList(query, String.class)).size()==0;
@@ -48,6 +37,9 @@ public class PastPupilRepository extends Repository{
         String query ="SELECT DISTINCT id FROM past_pupil WHERE past_pupil_member_id='"+memId+"' AND school_id='"+schId+"'";
         return ((List<String>) super.stmt.queryForList(query, String.class)).size()==0 || memId.length()==0 || memId==null;
     }
-
+    @Override
+    public boolean checkAvailability(String id) {
+        return (getOne(id)==null);
+    }
 
 }

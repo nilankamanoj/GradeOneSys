@@ -24,6 +24,5 @@ public class ParentService {
     public Parent getOne(String NIC){
         return(Parent) parentRepo.getOne(NIC);
     }
-    public List getIds(){return parentRepo.fetchIds();}
-    public String getJavaScriptIds(){return parentRepo.getJavaScriptIdList();}
+    public boolean checkAvailability(String id){return parentRepo.checkAvailability(id);}
 }

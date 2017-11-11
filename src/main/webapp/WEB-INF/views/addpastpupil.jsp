@@ -12,8 +12,6 @@
     <link rel="stylesheet" href="${contextPath}/resources/assets/css/main.css" />
     <link rel="stylesheet" href="${contextPath}/resources/assets/css/customize.css" />
     <script src="${contextPath}/resources/assets/js/jquery.min.js"></script>
-    <script>var ids =${idList};</script>
-    <script>var schs =${schList};</script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>
     <script src="${contextPath}/resources/validator/validatePastPupil.js"></script>
 </head>
@@ -43,8 +41,9 @@
                 <spring:bind path = "school_id">
                     <div class="form-group ${status.error ? 'has-error' : ''}">
                         <form:input type="text" path="school_id" class="form-control" placeholder="School ID"
-                                    autofocus="true"></form:input>
+                                    autofocus="true" id="sch_id"></form:input>
                         <form:errors path="school_id"></form:errors>
+
                     </div>
                 </spring:bind>
 
@@ -53,6 +52,7 @@
                         <form:input type="text" path="student_id" class="form-control" placeholder="Student ID No."
                                     autofocus="true"></form:input>
                         <form:errors path="student_id"></form:errors>
+
                     </div>
                 </spring:bind>
 

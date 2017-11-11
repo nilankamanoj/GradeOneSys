@@ -30,21 +30,38 @@ jQuery.validator.addMethod("checkPeriod", function(value, element) {
 
     else return false;
 });
-jQuery.validator.addMethod("checkUnique", function(value, element) {
 
-    if(!ids.includes(value.toLowerCase())){
-        return true;
-    }
-    else return false;
+jQuery.validator.addMethod("checkUnique", function(value, element) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", "checkId?id="+value, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText=="true";
 });
 
 jQuery.validator.addMethod("checkSchool", function(value, element) {
-
-    if(schs.includes(value)){
-        return true;
-    }
-    else return false;
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", "checkSchId?sch_id="+value, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText=="false";
 });
+
+jQuery.validator.addMethod("checkSchStu", function(value, element) {
+var sch_id=document.getElementById("sch_id").value;
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", "checkSchStuCombination?sch_id="+sch_id+"&stu_id="+value, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText=="true";
+});
+
+jQuery.validator.addMethod("checkSchMem", function(value, element) {
+    var sch_id=document.getElementById("sch_id").value;
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", "checkSchMemCombination?sch_id="+sch_id+"&mem_id="+value, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText=="true";
+});
+
+
 
 $(function() {
 
@@ -70,7 +87,8 @@ $(function() {
                 required:true,
                 minlength: 8,
                 maxlength: 8,
-                digits: true
+                digits: true,
+                checkSchStu:true
 
             },
             no_of_classes:{
@@ -85,7 +103,8 @@ $(function() {
             past_pupil_member_id:{
                 digits:true,
                 minlength: 8,
-                maxlength: 8
+                maxlength: 8,
+                checkSchMem:true
 
             }
 
@@ -98,10 +117,24 @@ $(function() {
         messages: {
             id:"enter valid/unused nic",
             school_id:"enter valid school",
-            student_id:"enter valid id",
+            student_id:{
+                required:"enter valid id",
+                minlength: "enter valid id",
+                maxlength: "enter valid id",
+                digits: "enter valid id",
+                checkSchStu:"school/student pair used"
+
+            },
             no_of_classes:"enter valid count",
             period:"enter (start-end)",
-            past_pupil_member_id:"enter valid id"
+            past_pupil_member_id:{
+                digits: "enter valid id",
+                minlength: "enter valid id",
+                maxlength: "enter valid id",
+                checkSchMem:"school/member pair used"
+
+
+            }
 
         },
         // Make sure the form is submitted to the destination defined

@@ -5,6 +5,14 @@ jQuery.validator.addMethod("checkDrop", function(value, element) {
     }
     else return false;
 });
+
+jQuery.validator.addMethod("checkUnique", function(value, element) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", "checkUserName?username="+value, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText=="true";
+});
+
 $(function() {
 
     $("form[id='contact']").validate({
@@ -12,7 +20,9 @@ $(function() {
         rules: {
             username:{
                 required:true,
-                minlength:6
+                minlength:6,
+                checkUnique:true
+
             },
             password:{
                 required:true,
@@ -34,7 +44,7 @@ $(function() {
         },
         // Specify validation error messages
         messages: {
-            username:"user name too short",
+            username:"enter long/unused username",
             password:"enter at least 8 chars",
             passwordConfirm:"passwords dont match",
             occupation:"select occupation"

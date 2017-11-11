@@ -23,11 +23,10 @@ jQuery.validator.addMethod("checkTp", function(value, element) {
     else return false;
 });
 jQuery.validator.addMethod("checkUnique", function(value, element) {
-
-    if(!ids.includes(value.toLowerCase())){
-        return true;
-    }
-    else return false;
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", "checkNIC?NIC="+value, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText=="true";
 });
 
 $(function() {

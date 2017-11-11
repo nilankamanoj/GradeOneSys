@@ -37,13 +37,7 @@ public class SchoolRepository extends Repository {
     }
 
     @Override
-    public List fetchIds() {
-        String query="SELECT DISTINCT id from school";
-        return (List<String>) super.stmt.queryForList(query, String.class);
-    }
-
-    @Override
-    public String getJavaScriptIdList() {
-        return super.toJavascriptArray(this.fetchIds());
+    public boolean checkAvailability(String id) {
+        return (getOne(id)==null);
     }
 }

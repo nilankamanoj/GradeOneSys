@@ -25,6 +25,5 @@ public class SchoolService {
     public School getOne(String id){
         return(School) appRepo.getOne(id);
     }
-    public List getIds(){return appRepo.fetchIds();}
-    public String getJavaScriptIds(){return appRepo.getJavaScriptIdList();}
+    public boolean checkAvailability(String id){return appRepo.checkAvailability(id);}
 }

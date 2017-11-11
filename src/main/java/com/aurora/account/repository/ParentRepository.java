@@ -16,17 +16,6 @@ import java.util.List;
  */
 public class ParentRepository extends Repository{
     @Override
-    public List fetchIds() {
-        String query="SELECT DISTINCT id from parent";
-        return (List<String>) super.stmt.queryForList(query, String.class);
-    }
-
-    @Override
-    public String getJavaScriptIdList() {
-        return super.toJavascriptArray(this.fetchIds());
-    }
-
-    @Override
     public void saveObj(Object object) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         
@@ -48,6 +37,11 @@ public class ParentRepository extends Repository{
         catch(org.springframework.dao.EmptyResultDataAccessException ex){
             return null;
         }
+    }
+
+    @Override
+    public boolean checkAvailability(String id) {
+        return (getOne(id)==null);
     }
     
 }

@@ -7,11 +7,10 @@ jQuery.validator.addMethod("checkDrop", function(value, element) {
 });
 
 jQuery.validator.addMethod("checkUnique", function(value, element) {
-
-    if(!ids.includes(value)){
-        return true;
-    }
-    else return false;
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", "checkAppId?application_id="+value, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText=="true";
 });
 
 
