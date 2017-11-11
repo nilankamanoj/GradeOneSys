@@ -33,7 +33,7 @@ public class PastPupilValidator implements Validator{
         String id = pastPupil.getId().trim();
         String school_id = pastPupil.getSchool_id().trim();
         String student_id = pastPupil.getStudent_id().trim();
-        String ppm_id = pastPupil.getPast_pupil_member_id().trim();
+        String past_pupil_member_id = pastPupil.getPast_pupil_member_id().trim();
         String achievements = pastPupil.getAchievements().trim();
         String period = pastPupil.getPeriod().trim();
         String no_of_classes = pastPupil.getNo_of_classes().trim();
@@ -49,6 +49,13 @@ public class PastPupilValidator implements Validator{
         if (school_id.length()>0 && !((school_id.chars().allMatch(Character::isDigit)) && (schoolService.getOne(school_id)!=null))) {
             errors.rejectValue("school_id", "Invalid.pastPupilForm.school_id");
         }
+        if(!pastPupilService.availbleCombSchStu(school_id,student_id)){
+            errors.rejectValue("student_id", "Dupplicate.pastPupilForm.combinationSchStu");
+        }
+        if(!pastPupilService.availbleCombSchMem(school_id,past_pupil_member_id)){
+            errors.rejectValue("past_pupil_member_id", "Dupplicate.pastPupilForm.combinationSchMem");
+        }
+
         if (achievements.length()>0 && achievements.chars().allMatch(Character::isDigit)){
             errors.rejectValue("achievements", "Invalid.pastPupilForm.achievements");
         }

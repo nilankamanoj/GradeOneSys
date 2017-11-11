@@ -19,5 +19,6 @@ public class PastPupilService {
     }
     public List getIds(){return pastRepo.fetchIds();}
     public String getJavaScriptIds(){return pastRepo.getJavaScriptIdList();}
-    
+    public boolean availbleCombSchStu(String schId,String stuId){return pastRepo.availbleCombSchStu(schId,stuId);}
+    public boolean availbleCombSchMem(String schId,String memId){return pastRepo.availbleCombSchMem(schId,memId);}
 }

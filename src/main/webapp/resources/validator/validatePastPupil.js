@@ -38,6 +38,14 @@ jQuery.validator.addMethod("checkUnique", function(value, element) {
     else return false;
 });
 
+jQuery.validator.addMethod("checkSchool", function(value, element) {
+
+    if(schs.includes(value)){
+        return true;
+    }
+    else return false;
+});
+
 $(function() {
 
     $("form[id='contact']").validate({
@@ -54,7 +62,8 @@ $(function() {
             school_id:{
                 required:true,
                 minlength: 8,
-                maxlength: 8
+                maxlength: 8,
+                checkSchool:true
 
             },
             student_id:{

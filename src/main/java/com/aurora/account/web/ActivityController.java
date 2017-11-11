@@ -140,6 +140,7 @@ public class ActivityController {
     public String addPastPupil(Model model, String ok){
         model.addAttribute("pastPupilForm", new PastPupil());
         model.addAttribute("idList",pastPupilService.getJavaScriptIds());
+        model.addAttribute("schList",schoolService.getJavaScriptIds());
         if (ok != null){
             model.addAttribute("message", "<div class='alert alert-info'>Past pupil details added successfully.</div>");
         }
