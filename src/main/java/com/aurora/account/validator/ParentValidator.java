@@ -37,6 +37,8 @@ public class ParentValidator implements Validator{
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "initials", "NotEmpty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "occupation", "NotEmpty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty");
+
+        parent.setNIC(parent.getNIC().toLowerCase());
         
         if(parent.getNIC().length()!=10){
             errors.rejectValue("NIC", "Invalid.parentForm.NIC");

@@ -9,6 +9,8 @@ import com.aurora.account.model.School;
 import com.aurora.account.repository.SchoolRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  *
  * @author Dilshan Navodya
@@ -23,4 +25,6 @@ public class SchoolService {
     public School getOne(String id){
         return(School) appRepo.getOne(id);
     }
+    public List getIds(){return appRepo.fetchIds();}
+    public String getJavaScriptIds(){return appRepo.getJavaScriptIdList();}
 }

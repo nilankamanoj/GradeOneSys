@@ -4,6 +4,15 @@ jQuery.validator.addMethod("checkDrop", function(value, element) {
         return true;
     }
     else return false;
+
+
+});
+jQuery.validator.addMethod("checkUnique", function(value, element) {
+
+    if(!ids.includes(value)){
+        return true;
+    }
+    else return false;
 });
 
 $(function() {
@@ -15,7 +24,8 @@ $(function() {
                 required:true,
                 minlength:8,
                 maxlength:8,
-                digits: true
+                digits: true,
+                checkUnique:true
             },
 
             name:{

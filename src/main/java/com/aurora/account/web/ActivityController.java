@@ -91,6 +91,7 @@ public class ActivityController {
     @RequestMapping(value = "/addschool", method = RequestMethod.GET)
      public String addschool(Model model, String ok){
          model.addAttribute("schoolForm", new School());
+         model.addAttribute("idList",schoolService.getJavaScriptIds());
         setNav(model, 5);
          if (ok != null){
              
@@ -114,6 +115,7 @@ public class ActivityController {
     @RequestMapping(value = "/addparent", method = RequestMethod.GET)
      public String addparent(Model model, String ok){
         model.addAttribute("parentForm", new Parent());
+        model.addAttribute("idList",parentService.getJavaScriptIds());
         setNav(model,6);
         if (ok != null){
              
@@ -137,6 +139,7 @@ public class ActivityController {
     @RequestMapping(value = "/addpastpupil", method = RequestMethod.GET)
     public String addPastPupil(Model model, String ok){
         model.addAttribute("pastPupilForm", new PastPupil());
+        model.addAttribute("idList",pastPupilService.getJavaScriptIds());
         if (ok != null){
             model.addAttribute("message", "<div class='alert alert-info'>Past pupil details added successfully.</div>");
         }

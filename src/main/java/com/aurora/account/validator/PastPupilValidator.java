@@ -29,7 +29,7 @@ public class PastPupilValidator implements Validator{
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "student_id", "NotEmpty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "no_of_classes", "NotEmpty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "period", "NotEmpty");
-
+        pastPupil.setId(pastPupil.getId().toLowerCase());
         String id = pastPupil.getId().trim();
         String school_id = pastPupil.getSchool_id().trim();
         String student_id = pastPupil.getStudent_id().trim();

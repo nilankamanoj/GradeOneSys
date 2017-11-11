@@ -8,6 +8,9 @@ package com.aurora.account.service;
 import com.aurora.account.model.Parent;
 import com.aurora.account.repository.ParentRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 /**
  *
  * @author Sithara wanigasooriy
@@ -21,4 +24,6 @@ public class ParentService {
     public Parent getOne(String NIC){
         return(Parent) parentRepo.getOne(NIC);
     }
+    public List getIds(){return parentRepo.fetchIds();}
+    public String getJavaScriptIds(){return parentRepo.getJavaScriptIdList();}
 }

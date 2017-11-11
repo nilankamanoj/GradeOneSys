@@ -22,6 +22,13 @@ jQuery.validator.addMethod("checkTp", function(value, element) {
     }
     else return false;
 });
+jQuery.validator.addMethod("checkUnique", function(value, element) {
+
+    if(!ids.includes(value.toLowerCase())){
+        return true;
+    }
+    else return false;
+});
 
 $(function() {
 
@@ -41,7 +48,8 @@ $(function() {
                 required:true,
                 minlength: 10,
                 maxlength: 10,
-                checkNic:true
+                checkNic:true,
+                checkUnique:true
             },
             email:{
                 required:true,
@@ -68,7 +76,7 @@ $(function() {
             second_name: "enter second name",
             initials:"enter initials",
             gender:"select gender",
-            NIC:"enter valid Nic",
+            NIC:"enter valid/unused Nic",
             email:"enter valid email",
             telephone_no:"enter valid TP",
             occupation:"enter an occupation"

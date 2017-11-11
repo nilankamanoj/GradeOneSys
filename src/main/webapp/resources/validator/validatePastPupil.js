@@ -30,6 +30,13 @@ jQuery.validator.addMethod("checkPeriod", function(value, element) {
 
     else return false;
 });
+jQuery.validator.addMethod("checkUnique", function(value, element) {
+
+    if(!ids.includes(value.toLowerCase())){
+        return true;
+    }
+    else return false;
+});
 
 $(function() {
 
@@ -41,7 +48,8 @@ $(function() {
                 required:true,
                 minlength: 10,
                 maxlength: 10,
-                checkNic:true
+                checkNic:true,
+                checkUnique:true
             },
             school_id:{
                 required:true,
@@ -79,7 +87,7 @@ $(function() {
         },
         // Specify validation error messages
         messages: {
-            id:"enter valid nic",
+            id:"enter valid/unused nic",
             school_id:"enter valid school",
             student_id:"enter valid id",
             no_of_classes:"enter valid count",
