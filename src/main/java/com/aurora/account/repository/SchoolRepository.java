@@ -7,6 +7,8 @@ package com.aurora.account.repository;
 import com.aurora.account.mapper.SchoolRowMapper;
 import com.aurora.account.model.School;
 
+import java.util.List;
+
 /**
  *
  * @author Dilshan Navodya
@@ -32,5 +34,15 @@ public class SchoolRepository extends Repository {
         catch(org.springframework.dao.EmptyResultDataAccessException ex){
             return null;
         }
+    }
+
+    @Override
+    public List fetchIds() {
+        return null;
+    }
+
+    @Override
+    public String getJavaScriptIdList() {
+        return null;
     }
 }

@@ -7,11 +7,23 @@ package com.aurora.account.repository;
 
 import com.aurora.account.mapper.ParentRowMapper;
 import com.aurora.account.model.Parent;
+
+import java.util.List;
+
 /**
  *
  * @author Sithara wanigasooriy
  */
 public class ParentRepository extends Repository{
+    @Override
+    public List fetchIds() {
+        return null;
+    }
+
+    @Override
+    public String getJavaScriptIdList() {
+        return null;
+    }
 
     @Override
     public void saveObj(Object object) {

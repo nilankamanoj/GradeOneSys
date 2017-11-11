@@ -23,6 +23,8 @@
     <header id="header" class="alt">
         <h1 id="logo"><a href="login">Grade One Evaluating System</a></h1>
     </header>
+    <article >
+    </article>
 
     <section id="banner">
         <div class="inner">
@@ -53,6 +55,7 @@
 
         </div>
     </section>
+
 
     <footer id="footer">
         <ul class="copyright">

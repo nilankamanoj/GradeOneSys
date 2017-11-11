@@ -48,6 +48,7 @@ public class ActivityController {
      @RequestMapping(value = "/addapplication", method = RequestMethod.GET)
      public String addapplication(Model model, String ok){
          model.addAttribute("applicantForm", new Applicant());
+         model.addAttribute("idList",appService.getJavaScriptIds());
          setNav(model,2);
          if (ok != null){
              setNav(model, 2);
@@ -175,4 +176,5 @@ public class ActivityController {
         String profile = contentgen.getProfile();
         model.addAttribute("profile", profile);
     }
+
 }

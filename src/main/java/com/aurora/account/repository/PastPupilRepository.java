@@ -4,6 +4,8 @@ import com.aurora.account.model.PastPupil;
 import org.springframework.dao.EmptyResultDataAccessException;
 import com.aurora.account.mapper.PastPupilRowMapper;
 
+import java.util.List;
+
 public class PastPupilRepository extends Repository{
 
     @Override
@@ -25,6 +27,16 @@ public class PastPupilRepository extends Repository{
         }
         
     }
-    
-    
+
+    @Override
+    public List fetchIds() {
+        return null;
+    }
+
+    @Override
+    public String getJavaScriptIdList() {
+        return null;
+    }
+
+
 }

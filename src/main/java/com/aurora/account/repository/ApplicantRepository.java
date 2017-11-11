@@ -2,6 +2,8 @@ package com.aurora.account.repository;
 import com.aurora.account.mapper.ApplicantRowMapper;
 import com.aurora.account.model.Applicant;
 
+import java.util.List;
+
 public class ApplicantRepository extends Repository{
 
     @Override
@@ -26,7 +28,16 @@ public class ApplicantRepository extends Repository{
         }
     }
 
+    @Override
+    public List fetchIds() {
+        String query="SELECT DISTINCT application_id from applicant";
+        return (List<String>) super.stmt.queryForList(query, String.class);
+    }
+
+    @Override
+    public String getJavaScriptIdList() {
+        return super.toJavascriptArray(this.fetchIds());
+    }
 
 
-  
 }
