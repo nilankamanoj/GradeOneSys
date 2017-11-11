@@ -17,12 +17,13 @@ import java.util.List;
 public class ParentRepository extends Repository{
     @Override
     public List fetchIds() {
-        return null;
+        String query="SELECT DISTINCT id from parent";
+        return (List<String>) super.stmt.queryForList(query, String.class);
     }
 
     @Override
     public String getJavaScriptIdList() {
-        return null;
+        return super.toJavascriptArray(this.fetchIds());
     }
 
     @Override

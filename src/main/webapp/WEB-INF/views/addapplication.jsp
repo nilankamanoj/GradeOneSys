@@ -15,9 +15,7 @@
     <script src="${contextPath}/resources/js/datepick1.js"></script>
     <script src="${contextPath}/resources/js/datepick2.js"></script>
     <script src="${contextPath}/resources/assets/js/customize.js"></script>
-<script>
-    var ids =${idList};
-</script>
+    <script>var ids =${idList};</script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>
     <script src="${contextPath}/resources/validator/validateApp.js"></script>
     <script>

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="${contextPath}/resources/assets/css/main.css" />
     <link rel="stylesheet" href="${contextPath}/resources/assets/css/customize.css" />
     <script src="${contextPath}/resources/assets/js/jquery.min.js"></script>
+    <script>var ids =${idList};</script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>
     <script src="${contextPath}/resources/validator/validateParent.js"></script>
 </head>

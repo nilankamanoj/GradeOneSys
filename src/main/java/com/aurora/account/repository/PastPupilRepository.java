@@ -30,12 +30,13 @@ public class PastPupilRepository extends Repository{
 
     @Override
     public List fetchIds() {
-        return null;
+        String query="SELECT DISTINCT id from past_pupil";
+        return (List<String>) super.stmt.queryForList(query, String.class);
     }
 
     @Override
     public String getJavaScriptIdList() {
-        return null;
+        return super.toJavascriptArray(this.fetchIds());
     }
 
 
