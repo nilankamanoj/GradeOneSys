@@ -12,19 +12,19 @@ public class AssignedApplicantRepository extends Repository {
     String parentData = asapp.toStringForApplicantParent();
     super.stmt.update("insert into applicant_parent values"+parentData);
 
-        if(asapp.getSch_id1()!=null){
+        if(asapp.getSch_id1().length()==8){
             super.stmt.update("insert into assigned_applicant values"+asapp.toStringForAssignedApplicant1());
         }
-        if(asapp.getSch_id2()!=null){
+        if(asapp.getSch_id2().length()==8){
             super.stmt.update("insert into assigned_applicant values"+asapp.toStringForAssignedApplicant2());
         }
-        if(asapp.getSch_id3()!=null){
+        if(asapp.getSch_id3().length()==8){
             super.stmt.update("insert into assigned_applicant values"+asapp.toStringForAssignedApplicant3());
         }
-        if(asapp.getSch_id4()!=null){
+        if(asapp.getSch_id4().length()==8){
             super.stmt.update("insert into assigned_applicant values"+asapp.toStringForAssignedApplicant4());
         }
-        if(asapp.getSch_id5()!=null){
+        if(asapp.getSch_id5().length()==8){
             super.stmt.update("insert into assigned_applicant values"+asapp.toStringForAssignedApplicant5());
         }
 

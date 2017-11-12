@@ -46,7 +46,7 @@
                     </div>
                 </spring:bind>
                 </div>
-
+            </br>
             <div class="row">
                 <spring:bind path="sch_id1">
                     <div class="form-group ${status.error ? 'has-error' : ''}">
