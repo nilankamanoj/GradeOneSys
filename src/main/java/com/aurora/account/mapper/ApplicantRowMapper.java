@@ -1,10 +1,11 @@
 
 package com.aurora.account.mapper;
 
+import org.springframework.jdbc.core.RowMapper;
 import com.aurora.account.model.Applicant;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import org.springframework.jdbc.core.RowMapper;
+
 
 public class ApplicantRowMapper implements RowMapper{
 
