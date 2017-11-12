@@ -51,7 +51,7 @@
                 <spring:bind path="sch_id1">
                     <div class="form-group ${status.error ? 'has-error' : ''}">
                         <form:input type="text" path="sch_id1" class="form-control" placeholder="School id 1"
-                                    autofocus="true" ></form:input>
+                                    autofocus="true" id="sch_id1" ></form:input>
                         <form:errors path="sch_id1"></form:errors>
                     </div>
                 </spring:bind>
@@ -69,7 +69,7 @@
                 <spring:bind path="sch_id2">
                     <div class="form-group ${status.error ? 'has-error' : ''}">
                         <form:input type="text" path="sch_id2" class="form-control" placeholder="School id 2"
-                                    autofocus="true"></form:input>
+                                    autofocus="true" id="sch_id2" ></form:input>
                         <form:errors path="sch_id2"></form:errors>
                     </div>
                 </spring:bind>
@@ -87,7 +87,7 @@
                 <spring:bind path="sch_id3">
                     <div class="form-group ${status.error ? 'has-error' : ''}">
                         <form:input type="text" path="sch_id3" class="form-control" placeholder="School id 3"
-                                    autofocus="true"></form:input>
+                                    autofocus="true" id="sch_id3" ></form:input>
                         <form:errors path="sch_id3"></form:errors>
                     </div>
                 </spring:bind>
@@ -105,7 +105,7 @@
                 <spring:bind path="sch_id4">
                     <div class="form-group ${status.error ? 'has-error' : ''}">
                         <form:input type="text" path="sch_id4" class="form-control" placeholder="School id 4"
-                                    autofocus="true"></form:input>
+                                    autofocus="true" id="sch_id4" ></form:input>
                         <form:errors path="sch_id4"></form:errors>
                     </div>
                 </spring:bind>
@@ -123,7 +123,7 @@
                 <spring:bind path="sch_id5">
                     <div class="form-group ${status.error ? 'has-error' : ''}">
                         <form:input type="text" path="sch_id5" class="form-control" placeholder="School id 5"
-                                    autofocus="true"></form:input>
+                                    autofocus="true" id="sch_id5"></form:input>
                         <form:errors path="sch_id5"></form:errors>
                     </div>
                 </spring:bind>
