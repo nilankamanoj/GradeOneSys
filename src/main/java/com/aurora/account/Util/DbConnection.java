@@ -1,36 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.aurora.account.Util;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
-import javax.sql.DataSource;
-
-/**
- *
- * @author nilanka
- */
 public class DbConnection {
-   // @Autowired
-   // private DataSource dataSourceTemplate;
+
     public JdbcTemplate getConnection(){
 
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/GradeOneSchema");
-        dataSource.setUsername("finley");
-        dataSource.setPassword("password");
+        Properties props = new Properties();
+        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        InputStream stream = loader.getResourceAsStream("application.properties");
+        try {
+            props.load(stream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        //ApplicationContext context = new ClassPathXmlApplicationContext("appconfig-data.xml");
-        // get bean declared with name "dataSource" in the configuration file
-      //  DriverManagerDataSource dataSource = (DriverManagerDataSource) context.getBean("dataSource");
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+
+        dataSource.setDriverClassName(props.getProperty("jdbc.driverClassName"));
+        dataSource.setUrl(props.getProperty("jdbc.url"));
+        dataSource.setUsername(props.getProperty("jdbc.username"));
+        dataSource.setPassword(props.getProperty("jdbc.password"));
+
        JdbcTemplate stmt=new JdbcTemplate(dataSource);
         return stmt;
     }

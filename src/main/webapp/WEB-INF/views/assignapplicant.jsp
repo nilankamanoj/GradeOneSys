@@ -29,7 +29,9 @@
             <form:form id="contact" method="POST" modelAttribute="assignForm" class="form-signin">
                 <h2 class="form-signin-heading">Assign Applicant</h2>
                 <span>${message}</span>
+                <div class="box">
                 <div class="row">
+
                 <spring:bind path = "application_id">
                     <div class="form-group ${status.error ? 'has-error' : ''}">
                         <form:input type="text" path="application_id" class="form-control" placeholder="application id"
@@ -46,8 +48,8 @@
                     </div>
                 </spring:bind>
                 </div>
-            </br>
-            <div class="row">
+                </div>
+                <div class="row">
                 <spring:bind path="sch_id1">
                     <div class="form-group ${status.error ? 'has-error' : ''}">
                         <form:input type="text" path="sch_id1" class="form-control" placeholder="School id 1"

@@ -1,0 +1,4 @@
+jdbc.driverClassName=com.mysql.jdbc.Driver
+jdbc.url=#yourHost/database
+jdbc.username=#your username
+jdbc.password=#your password

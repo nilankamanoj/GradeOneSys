@@ -1,0 +1,11 @@
+mail.host=smtp.gmail.com
+mail.username=#Your gmail
+mail.password=#your password
+mail.defaultEncoding=UTF-8
+mail.smtp.auth=true
+mail.smtp.socketFactory.class=javax.net.ssl.SSLSocketFactory
+mail.smtp.socketFactory.fallback=false
+mail.smtp.port=465
+mail.smtp.socketFactory.port=465
+
+#https://myaccount.google.com/lesssecureapps

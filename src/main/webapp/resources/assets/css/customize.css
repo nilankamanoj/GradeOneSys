@@ -40,3 +40,16 @@
     background-color:transparent;
 
 }
+.box{
+    align-content: center;
+
+    padding: 1em;
+    background-color: transparent;
+    opacity: 0.6;
+
+
+    border: 1px solid #c3c3c3;
+
+
+
+}
