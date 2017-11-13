@@ -40,6 +40,7 @@ public class ContentGenerator {
             add("");//addparent        6
             add("");//addpasspupil     7
             add("");//assignapplicant  8
+            add("");//viewapplications 9
         }};
 
         this.navlist.set(active,"\"current\"");
@@ -62,6 +63,11 @@ public class ContentGenerator {
         if(occupation.trim().equals("admin")){
            navbar+="<li class="+navlist.get(1)+"><a href='registration' >Add user</a></li>";
            navbar+="<li class="+navlist.get(3)+"><a href='viewusers'>View Users</a></li>";
+        }
+
+        if(occupation.trim().equals("reviewer")){
+            navbar+="<li class="+navlist.get(9)+"><a href='viewapplications' >View Applications</a></li>";
+
         }
 
 

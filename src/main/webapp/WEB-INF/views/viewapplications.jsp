@@ -6,7 +6,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Add Parent</title>
+    <title>View Applications</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="${contextPath}/resources/assets/css/main.css" />

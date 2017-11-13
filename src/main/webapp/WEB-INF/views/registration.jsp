@@ -45,6 +45,7 @@
                             <form:option value="NO">Select Occupation </form:option>
                             <form:option value="data entry">Data Entry</form:option>
                             <form:option value="admin">Admin</form:option>
+                            <form:option value="reviewer">Reviewer</form:option>
                         </form:select>
                         <form:errors path="occupation"></form:errors>
                     </div>

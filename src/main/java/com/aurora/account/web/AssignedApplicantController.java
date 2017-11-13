@@ -55,7 +55,7 @@ private EmailApplicantService emailApplicantService;
     @RequestMapping(value = "/viewapplications", method = RequestMethod.GET)
     public String viewApplicant(Model model){
         model.addAttribute("applicantForm", new Applicant());
-        setNav(model,4);
+        setNav(model,9);
 
 
         return "viewapplications";
@@ -78,15 +78,6 @@ private EmailApplicantService emailApplicantService;
         return String.valueOf(emailApplicant.getEmail());
     }
 
-    @RequestMapping("getCount")
-    @ResponseBody
-    public String  getCount() throws InterruptedException {
-        for(int i=0;i<100; i++) {
-            Thread.sleep(500);
-            return String.valueOf(i);
-        }
-        return "false";
-    }
 
 
 }

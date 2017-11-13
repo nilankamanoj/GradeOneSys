@@ -40,6 +40,14 @@ public class UserServiceImpl implements UserService {
          
            
        }
+
+       else if(occupation.trim().equals("reviewer")){
+           roleSet.add(roleRepository.findAll().get(0));
+           roleSet.add(roleRepository.findAll().get(3));
+           user.setRoles(roleSet);
+
+
+       }
         userRepository.save(user);
     }
 
