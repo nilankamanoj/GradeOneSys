@@ -48,9 +48,14 @@ public class UserController extends AbstractController
         model.addAttribute("message",contentgen.get403());
         }
         
-        if(error404!=null)
+        else if(error404!=null)
         {
             model.addAttribute("message",contentgen.get404());
+        }
+
+        else
+        {
+            model.addAttribute("message",contentgen.getNormal());
         }
 
         return "welcome";

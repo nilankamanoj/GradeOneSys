@@ -5,6 +5,8 @@ import com.aurora.account.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -114,6 +116,23 @@ public class ContentGenerator {
                 "      <ul class=\"buttons vertical\">                                              "+
                 "         <li><a href=\"welcome\" class=\"button fit scrolly\">Go Back Home</a></li>"+
                 "      </ul>                                                                        "+
+                "  </footer>                                                                        "+
+                "</div>                                                                             ";
+    }
+
+    public String getNormal(){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDate localDate = LocalDate.now();
+
+        return "<div class=\"inner\">                                                              "+
+                "  <header>                                                                         "+
+                "     <h2>WELCOME</h2>                                                               "+
+                "  </header>                                                                        "+
+                "  <p>HI ,"+user.getUsername()+"</p>                                                "+
+                "  <footer>                                                                         "+
+                "           <p>today is "+dtf.format(localDate)+"</p> <br>" +
+                "<a href=\"#\" id=t1c title=\"clock provided by timeanddate.com\" target=_blank><div id=fc style=\"width:110px;height:110px;\"><canvas class=no><span id=t1>10:07:17 pm</span></canvas><canvas id=back></canvas><canvas id=front></canvas><div id=hov></div></div></a>" +
+
                 "  </footer>                                                                        "+
                 "</div>                                                                             ";
     }
