@@ -63,3 +63,4 @@
     background-color: #c0f9f1  ;
 
 }
+#fc canvas{position:absolute;top:0;left:0}#fc #back{position:relative}#fc{display:inline-block;position:relative}#t1c{display:block;text-align:center}#hov{position:absolute;top:0;left:0;background:url('/gfx/free-logo.png') rgba(255,255,255,0.8);background:url('/gfx/free-logo.svg'),linear-gradient(rgba(255,255,255,0.8),rgba(255,255,255,0.8));background-size:cover;background-repeat:no-repeat;display:none}#fc:hover #hov{display:block}.no #hov{display:none}

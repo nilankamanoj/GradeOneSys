@@ -131,7 +131,7 @@ public class ContentGenerator {
                 "  <p>HI ,"+user.getUsername()+"</p>                                                "+
                 "  <footer>                                                                         "+
                 "           <p>today is "+dtf.format(localDate)+"</p> <br>" +
-                "<a href=\"#\" id=t1c title=\"clock provided by timeanddate.com\" target=_blank><div id=fc style=\"width:110px;height:110px;\"><canvas class=no><span id=t1>10:07:17 pm</span></canvas><canvas id=back></canvas><canvas id=front></canvas><div id=hov></div></div></a>" +
+                "<div id=t1c  target=_blank><div id=fc style=\"width:110px;height:110px;\"><canvas class=no><span id=t1>10:07:17 pm</span></canvas><canvas id=back></canvas><canvas id=front></canvas><div id=hov></div></div></div>" +
 
                 "  </footer>                                                                        "+
                 "</div>                                                                             ";
