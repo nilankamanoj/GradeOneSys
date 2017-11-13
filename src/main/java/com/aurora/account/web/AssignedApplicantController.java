@@ -1,5 +1,7 @@
 package com.aurora.account.web;
 
+import com.aurora.account.Util.MailMail;
+import com.aurora.account.model.Applicant;
 import com.aurora.account.model.AssignedApplicant;
 import com.aurora.account.model.EmailApplicant;
 import com.aurora.account.service.AssignedApplicantService;
@@ -50,6 +52,16 @@ private EmailApplicantService emailApplicantService;
         return "redirect:assignapplicant?ok";
     }
 
+    @RequestMapping(value = "/viewapplications", method = RequestMethod.GET)
+    public String viewApplicant(Model model){
+        model.addAttribute("applicantForm", new Applicant());
+        setNav(model,4);
+
+
+        return "viewapplications";
+
+    }
+
     @RequestMapping("checkAssignId")
     @ResponseBody
     public String  checkUser(String application_id){
@@ -61,9 +73,20 @@ private EmailApplicantService emailApplicantService;
     @ResponseBody
     public String  checkEmail(String application_id){
         EmailApplicant emailApplicant = emailApplicantService.getOne(application_id);
+        //MailMail mailMail=new MailMail();
+        //mailMail.sendMail("nilankaeng16a@gmail.com","Your Application Accepted",emailApplicant.getEmail());
         return String.valueOf(emailApplicant.getEmail());
     }
 
+    @RequestMapping("getCount")
+    @ResponseBody
+    public String  getCount() throws InterruptedException {
+        for(int i=0;i<100; i++) {
+            Thread.sleep(500);
+            return String.valueOf(i);
+        }
+        return "false";
+    }
 
 
 }
