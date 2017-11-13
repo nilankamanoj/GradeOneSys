@@ -33,7 +33,7 @@ public class AssignedApplicantRepository extends Repository {
 
     @Override
     public Object getOne(String id) {
-        String sql="select * from assigned_applicant where application_id=?";
+        String sql="select * from applicant_parent where application_id=?";
         try{
             AssignedApplicant assignedApplicant = (AssignedApplicant) super.stmt.queryForObject(
                     sql, new Object[] { id }, new AssignedApplicantRowMapper());

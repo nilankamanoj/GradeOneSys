@@ -21,6 +21,14 @@ public class ParentRowMapper implements RowMapper{
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         Parent parent = new Parent();
         parent.setNIC(rs.getString("id"));
+        parent.setFirst_name(rs.getString("first_name"));
+        parent.setSecond_name(rs.getString("second_name"));
+        parent.setInitials(rs.getString("initials"));
+        parent.setOccupation(rs.getString("occupation"));
+        parent.setGender(rs.getString("gender"));
+        parent.setTelephone_no(rs.getString("telephone_no"));
+        parent.setEmail(rs.getString("email"));
+
         return parent;
     }
     

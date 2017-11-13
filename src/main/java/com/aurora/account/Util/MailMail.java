@@ -31,12 +31,14 @@ public class MailMail
         ;
         try {
             MimeMessage msg = new MimeMessage(session);
+
             msg.setFrom();
             msg.setRecipients(Message.RecipientType.TO,
                     reciever);
             msg.setSubject(subject);
             msg.setSentDate(new Date());
-            msg.setText(message);
+           // msg.setText(message);
+            msg.setContent(message, "text/html; charset=utf-8");
             Transport.send(msg);
             return true;
         } catch (MessagingException mex) {
@@ -44,5 +46,6 @@ public class MailMail
             return false;
         }
     }
+
 
 }

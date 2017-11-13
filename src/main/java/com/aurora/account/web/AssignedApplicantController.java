@@ -1,7 +1,9 @@
 package com.aurora.account.web;
 
 import com.aurora.account.model.AssignedApplicant;
+import com.aurora.account.model.EmailApplicant;
 import com.aurora.account.service.AssignedApplicantService;
+import com.aurora.account.service.EmailApplicantService;
 import com.aurora.account.validator.AssignedApplicantValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +21,8 @@ public class AssignedApplicantController extends AbstractController{
     private AssignedApplicantService assignedApplicantService;
     @Autowired
     private AssignedApplicantValidator assignedApplicantValidator;
-
+@Autowired
+private EmailApplicantService emailApplicantService;
     @RequestMapping(value = "/assignapplicant", method = RequestMethod.GET)
     public String assignApplicant(Model model, String ok){
         model.addAttribute("assignForm",new AssignedApplicant());
@@ -52,6 +55,13 @@ public class AssignedApplicantController extends AbstractController{
     public String  checkUser(String application_id){
 
         return String.valueOf(assignedApplicantService.checkAvailability(application_id));
+    }
+
+    @RequestMapping("getEmail")
+    @ResponseBody
+    public String  checkEmail(String application_id){
+        EmailApplicant emailApplicant = emailApplicantService.getOne(application_id);
+        return String.valueOf(emailApplicant.getEmail());
     }
 
 

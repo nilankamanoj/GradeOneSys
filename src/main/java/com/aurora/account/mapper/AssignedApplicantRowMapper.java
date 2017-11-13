@@ -14,6 +14,7 @@ public class AssignedApplicantRowMapper implements RowMapper{
         AssignedApplicant assignedApplicant = new AssignedApplicant();
 
         assignedApplicant.setApplication_id(rs.getString("application_id"));
+        assignedApplicant.setNic(rs.getString("nic"));
 
         return assignedApplicant;
     }

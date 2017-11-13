@@ -20,6 +20,11 @@ public class SchoolRowMapper implements RowMapper {
         School school = new School();
 
         school.setSch_id(rs.getString("id"));
+        school.setName(rs.getString("name"));
+        school.setDivision(rs.getString("division"));
+        school.setDistrict(rs.getString("district"));
+        school.setProvince(rs.getString("province"));
+        school.setEligible_count(rs.getString("eligible_count"));
         return school;
     }
     
