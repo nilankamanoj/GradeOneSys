@@ -1,7 +1,9 @@
 package com.aurora.account.web;
 
+import com.aurora.account.model.Activity;
 import com.aurora.account.model.TempUser;
 import com.aurora.account.model.User;
+import com.aurora.account.service.ActivityService;
 import com.aurora.account.service.UserService;
 import com.aurora.account.validator.ChangePassValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,8 @@ public class UserController extends AbstractController
     private UserService userService;
     @Autowired
     private ChangePassValidator changePassValidator;
+    @Autowired
+    private ActivityService activityService;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout)
@@ -98,8 +102,12 @@ public class UserController extends AbstractController
         tempUser.setPasswordConfirm(changeForm.getPasswordConfirm());
         tempUser.setId(authUser.getId());
         tempUser.setUsername(authUser.getUsername());
-        
+        Activity activity=new Activity();
+        activity.setUser_id(tempUser.getId());
+        activity.setActivity("password changed");
         userService.save(tempUser);
+        activityService.saveActivity(activity);
+
                
         return "redirect:/changepass?ok";
     }

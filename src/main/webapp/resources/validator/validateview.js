@@ -2,6 +2,9 @@ jQuery.validator.addMethod("checkUnique", function(value, element) {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", "checkAssignId?application_id="+value, false ); // false for synchronous request
     xmlHttp.send( null );
+    if(xmlHttp.responseText=="true") {
+        document.getElementById("viewEmail").innerHTML = "";
+    }
     return xmlHttp.responseText=="false";
 });
 jQuery.validator.addMethod("getEmail", function(value, element) {
