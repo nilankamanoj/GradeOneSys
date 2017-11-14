@@ -22,8 +22,10 @@ public class RegistrationContoller extends AbstractController
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model, String ok) 
     {
+        if(!setNav(model,1)){
+            return "redirect:/changepass?force";
+        }
         model.addAttribute("userForm", new User());
-        setNav(model,1);
 
         if (ok != null)
         {

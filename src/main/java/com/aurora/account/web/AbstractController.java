@@ -1,6 +1,9 @@
 package com.aurora.account.web;
 
 import com.aurora.account.Util.ContentGenerator;
+import com.aurora.account.model.User;
+import com.aurora.account.service.ActivityService;
+import com.aurora.account.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -14,6 +17,10 @@ public class AbstractController
 
     @Autowired
     protected ContentGenerator contentgen;
+    @Autowired
+    protected ActivityService activityService;
+    @Autowired
+    protected UserService userService;
 
     protected String getAuth()
     {
@@ -29,12 +36,21 @@ public class AbstractController
         }
     }
 
-    protected void setNav(Model model, int active)
+    protected Boolean setNav(Model model, int active)
     {
+
         String currentUserName=getAuth();
-        contentgen.setGen(currentUserName);
-        String nav=contentgen.getNavbar(active);
-        model.addAttribute("nav", nav);
+        User user = userService.findByUsername(currentUserName);
+        if(activityService.checkActivated(String.valueOf(user.getId())) ){
+            contentgen.setGen(currentUserName);
+            String nav = contentgen.getNavbar(active);
+            model.addAttribute("nav", nav);
+            return true;
+        }
+        else {
+            return false;
+        }
+
     }
 
     protected void setProfile(Model model)

@@ -24,8 +24,10 @@ public class SchoolController extends AbstractController
     @RequestMapping(value = "/addschool", method = RequestMethod.GET)
     public String addschool(Model model, String ok)
     {
+        if(!setNav(model,5)){
+            return "redirect:/changepass?force";
+        }
         model.addAttribute("schoolForm", new School());
-        setNav(model, 5);
 
         if (ok != null)
         {

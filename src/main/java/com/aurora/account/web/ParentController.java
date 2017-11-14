@@ -23,8 +23,10 @@ public class ParentController extends AbstractController
     @RequestMapping(value = "/addparent", method = RequestMethod.GET)
     public String addparent(Model model, String ok)
     {
+        if(!setNav(model,6)){
+            return "redirect:/changepass?force";
+        }
         model.addAttribute("parentForm", new Parent());
-        setNav(model,6);
 
         if (ok != null)
         {

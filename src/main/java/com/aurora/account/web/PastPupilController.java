@@ -26,6 +26,9 @@ public class PastPupilController extends AbstractController
     @RequestMapping(value = "/addpastpupil", method = RequestMethod.GET)
     public String addPastPupil(Model model, String ok)
     {
+        if(!setNav(model,7)){
+            return "redirect:/changepass?force";
+        }
         model.addAttribute("pastPupilForm", new PastPupil());
 
         if (ok != null)
@@ -33,7 +36,7 @@ public class PastPupilController extends AbstractController
             model.addAttribute("message", "<div class='alert alert-info'>Past pupil details added successfully.</div>");
         }
 
-        setNav(model, 7);
+
         return "addpastpupil";
     }
 

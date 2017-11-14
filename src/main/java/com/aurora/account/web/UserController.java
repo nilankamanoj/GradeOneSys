@@ -4,6 +4,7 @@ import com.aurora.account.model.Activity;
 import com.aurora.account.model.TempUser;
 import com.aurora.account.model.User;
 import com.aurora.account.service.ActivityService;
+import com.aurora.account.service.ApplicantService;
 import com.aurora.account.service.UserService;
 import com.aurora.account.validator.ChangePassValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ public class UserController extends AbstractController
     @Autowired
     private ActivityService activityService;
 
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout)
     {
@@ -45,7 +47,9 @@ public class UserController extends AbstractController
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String welcome(Model model, String error403,String error404)
     {
-        setNav(model,0);
+        if(!setNav(model,0)){
+            return "redirect:/changepass?force";
+        }
 
         if(error403!=null)
         {
@@ -66,10 +70,15 @@ public class UserController extends AbstractController
     }
     
     @RequestMapping(value = "/changepass", method = RequestMethod.GET)
-    public String changepass(Model model, String ok)
+    public String changepass(Model model, String ok,String force)
     {
         model.addAttribute("changeForm", new TempUser());
-        setNav(model,4);
+        if(force!=null){
+            model.addAttribute("message","You must change password!");
+        }
+        else if(!setNav(model,4)){
+            return "redirect:/changepass?force";
+        }
 
         if (ok != null)
         {
@@ -115,8 +124,10 @@ public class UserController extends AbstractController
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String profile(Model model) 
     {
-        
-        setNav(model,4);
+
+        if(!setNav(model,4)){
+            return "redirect:/changepass?force";
+        }
         setProfile(model);
         
         return "profile";
@@ -126,7 +137,9 @@ public class UserController extends AbstractController
     public String viewusers(Model model) 
     {
 
-        setNav(model,3);
+        if(!setNav(model,3)){
+            return "redirect:/changepass?force";
+        }
         String content="<form id='contact' method='POST'  >";
         List<User> users = userService.getAll();
 

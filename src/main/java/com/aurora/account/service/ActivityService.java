@@ -10,6 +10,7 @@ public class ActivityService {
     private final ActivityRepository activityRepository = new ActivityRepository();
 
     public void saveActivity(Activity activity){activityRepository.saveObj(activity);}
-    
+
+    public boolean checkActivated(String id){return activityRepository.checkAvailability(id);}
 
 }

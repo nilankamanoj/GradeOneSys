@@ -2,6 +2,8 @@ package com.aurora.account.repository;
 
 import com.aurora.account.model.Activity;
 
+import java.util.List;
+
 public class ActivityRepository extends Repository{
     @Override
     public void saveObj(Object object) {
@@ -19,6 +21,7 @@ public class ActivityRepository extends Repository{
 
     @Override
     public boolean checkAvailability(String id) {
-        return false;
+        String query = "SELECT id FROM activity WHERE user_id ='"+id+"'";
+        return ((List<String>) super.stmt.queryForList(query, String.class)).size()!=0;
     }
 }

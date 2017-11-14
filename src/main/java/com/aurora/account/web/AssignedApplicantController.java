@@ -27,8 +27,10 @@ public class AssignedApplicantController extends AbstractController{
 private EmailApplicantService emailApplicantService;
     @RequestMapping(value = "/assignapplicant", method = RequestMethod.GET)
     public String assignApplicant(Model model, String ok){
+        if(!setNav(model,8)){
+            return "redirect:/changepass?force";
+        }
         model.addAttribute("assignForm",new AssignedApplicant());
-        setNav(model,8);
 
         if (ok != null)
         {
@@ -54,9 +56,10 @@ private EmailApplicantService emailApplicantService;
 
     @RequestMapping(value = "/viewapplications", method = RequestMethod.GET)
     public String viewApplicant(Model model){
+        if(!setNav(model,9)){
+            return "redirect:/changepass?force";
+        }
         model.addAttribute("applicantForm", new Applicant());
-        setNav(model,9);
-
 
         return "viewapplications";
 
