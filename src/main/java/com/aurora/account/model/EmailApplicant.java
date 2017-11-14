@@ -54,7 +54,7 @@ public class EmailApplicant {
                 "<tr><td><b>gender</b></td><td>"+applicant.getGender()+"</td></tr>\n" +
                 "<tr><td><b>religion</b></td><td>"+applicant.getReligion()+"</td></tr>\n" +
                 "<tr><td><b>district</b></td><td>"+applicant.getDistrict()+"</td></tr>\n" +
-                "<tr><td><b>secretary div&nbsp</b></td><td>"+applicant.getDiv_sec()+"</td></tr>\n" +
+                "<tr><td><b>secretary div</b></td><td>"+applicant.getDiv_sec()+"</td></tr>\n" +
                 "<tr><td><b>grama div</b></td><td>"+applicant.getDiv_grama()+"</td></tr>\n" +
                 "</table>\n" +
                 "<hr>\n" +
@@ -63,7 +63,7 @@ public class EmailApplicant {
                 "<tr><td><b>name </b></td><td>"+parent.getInitials()+" "+parent.getFirst_name()+" " +parent.getSecond_name()+"</td></tr>\n" +
                 "<tr><td><b>NIC </b></td><td>"+parent.getNIC()+"</td></tr>\n" +
                 "<tr><td><b>gender</b></td><td>"+parent.getGender()+"</td></tr>\n" +
-                "<tr><td><b>occupation&nbsp</b></td><td>"+parent.getOccupation()+"</td></tr>\n" +
+                "<tr><td><b>occupation</b></td><td>"+parent.getOccupation()+"</td></tr>\n" +
                 "<tr><td><b>telphone</b></td><td>"+parent.getTelephone_no()+"</td></tr>\n" +
                 "<tr><td><b>email</b></td><td>"+parent.getEmail()+"</td></tr>\n" +
                 "</table>\n" +

@@ -1,6 +1,7 @@
 package com.aurora.account.web;
 
 import com.aurora.account.Util.MailMail;
+import com.aurora.account.Util.PdfGenerator;
 import com.aurora.account.model.Applicant;
 import com.aurora.account.model.AssignedApplicant;
 import com.aurora.account.model.EmailApplicant;
@@ -8,6 +9,7 @@ import com.aurora.account.service.AssignedApplicantService;
 import com.aurora.account.service.EmailApplicantService;
 import com.aurora.account.validator.AssignedApplicantValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,6 +27,7 @@ public class AssignedApplicantController extends AbstractController{
     private AssignedApplicantValidator assignedApplicantValidator;
 @Autowired
 private EmailApplicantService emailApplicantService;
+;
     @RequestMapping(value = "/assignapplicant", method = RequestMethod.GET)
     public String assignApplicant(Model model, String ok){
         if(!setNav(model,8)){
@@ -65,6 +68,15 @@ private EmailApplicantService emailApplicantService;
 
     }
 
+    @RequestMapping(value = "/viewapplications", method = RequestMethod.POST)
+    public String viewApplicant(@ModelAttribute("applicantForm") Applicant applicantForm, BindingResult bindingResult, Model model){
+        setNav(model,9);
+
+
+        return "viewapplications";
+
+    }
+
     @RequestMapping("checkAssignId")
     @ResponseBody
     public String  checkUser(String application_id){
@@ -76,8 +88,10 @@ private EmailApplicantService emailApplicantService;
     @ResponseBody
     public String  checkEmail(String application_id){
         EmailApplicant emailApplicant = emailApplicantService.getOne(application_id);
-        //MailMail mailMail=new MailMail();
-        //mailMail.sendMail("nilankaeng16a@gmail.com","Your Application Accepted",emailApplicant.getEmail());
+       // MailMail mailMail=new MailMail();
+       // mailMail.sendMail("nilankaeng16a@gmail.com","Your Application Accepted",emailApplicant.getEmail());
+      //  PdfGenerator pdfGenerator = new PdfGenerator();
+      //  pdfGenerator.generatePdf(emailApplicant.getEmail(),emailApplicant.getApplicant().getId(),"assignForms/");
         return String.valueOf(emailApplicant.getEmail());
     }
 

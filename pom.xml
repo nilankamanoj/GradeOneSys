@@ -29,6 +29,8 @@
         </repository>
     </repositories>
 
+
+
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -122,6 +124,24 @@
             <type>jar</type>
         </dependency>
     <dependency><groupId>javax</groupId><artifactId>javaee-web-api</artifactId><version>7.0</version></dependency>
+        <dependency>
+            <groupId>org.xhtmlrenderer</groupId>
+            <artifactId>flying-saucer-pdf</artifactId>
+            <version>9.0.8</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+        </dependency>
+
+        <dependency>
+            <!-- jsoup HTML parser library @ https://jsoup.org/ -->
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.11.1</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
