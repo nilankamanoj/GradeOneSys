@@ -51,4 +51,9 @@ public class EmailApplicantRepository extends Repository{
 
         return schools;
     }
+
+    public List<String> getIdList() {
+        String query = "SELECT application_id FROM applicant_parent ";
+        return (List<String>) super.stmt.queryForList(query, String.class);
+    }
 }

@@ -26,6 +26,7 @@ public class PdfGenerator {
     public boolean generatePdf(String html,String fileName,String folder){
         try {
             FileUtils.writeByteArrayToFile(new File(folder+fileName+".pdf"), toPdf(htmlToXhtml(html)));
+            //file goes to apachetomcat bin/folder
         } catch (IOException e) {
             return false;
         } catch (DocumentException e) {
