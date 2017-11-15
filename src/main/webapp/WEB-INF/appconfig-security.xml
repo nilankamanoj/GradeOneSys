@@ -12,6 +12,8 @@
         <intercept-url pattern="/addapplication" access="hasRole('ROLE_INSERT')"/>
         <intercept-url pattern="/addschool" access="hasRole('ROLE_INSERT')"/>
         <intercept-url pattern="/viewapplications" access="hasRole('ROLE_REVIEW')"/>
+        <intercept-url pattern="/sendemailstoassign" access="hasRole('ROLE_REVIEW')"/>
+        <intercept-url pattern="/getPercentage" access="hasRole('ROLE_REVIEW')"/>
         <intercept-url pattern="/assignapplicant" access="hasRole('ROLE_INSERT')"/>
         <intercept-url pattern="/addparent" access="hasRole('ROLE_INSERT')"/>
         <intercept-url pattern="/addpastpupil" access="hasRole('ROLE_INSERT')"/>

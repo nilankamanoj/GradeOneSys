@@ -33,16 +33,17 @@ public class ContentGenerator {
 
     public String getNavbar(int active){
         this.navlist=new ArrayList<String>() {{
-            add("");//welcome          0
-            add("");//registration     1
-            add("");//addapplication   2
-            add("");//viewusers        3
-            add("");//default          4
-            add("");//addschool        5
-            add("");//addparent        6
-            add("");//addpasspupil     7
-            add("");//assignapplicant  8
-            add("");//viewapplications 9
+            add("");//welcome             0
+            add("");//registration        1
+            add("");//addapplication      2
+            add("");//viewusers           3
+            add("");//default             4
+            add("");//addschool           5
+            add("");//addparent           6
+            add("");//addpasspupil        7
+            add("");//assignapplicant     8
+            add("");//viewapplications    9
+            add("");//sendemailstoassign 10
         }};
 
         this.navlist.set(active,"\"current\"");
@@ -69,6 +70,7 @@ public class ContentGenerator {
 
         if(occupation.trim().equals("reviewer")){
             navbar+="<li class="+navlist.get(9)+"><a href='viewapplications' >View Applications</a></li>";
+            navbar+="<li class="+navlist.get(10)+"><a href='sendemailstoassign' >Send Confirm Emails</a></li>";
 
         }
 

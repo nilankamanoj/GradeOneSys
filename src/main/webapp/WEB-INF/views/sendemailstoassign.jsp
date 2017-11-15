@@ -13,69 +13,7 @@
     <link rel="stylesheet" href="${contextPath}/resources/assets/css/main.css" />
     <link rel="stylesheet" href="${contextPath}/resources/assets/css/customize.css" />
     <script src="${contextPath}/resources/assets/js/jquery.min.js"></script>
-    <script>
-        var status ="no";
-        jQuery(document).ready(function() {
-
-            function jsHello(box2) {
-
-
-                setTimeout(function () {
-                    var box=100-box2
-
-                    $('.progress-bar').css('width', box + '%');
-                    $('.current-value').text(box + '%');
-                    if (box2 == 0) return;
-
-
-
-
-                    jsHello(100-getPercentage());
-
-
-                        sendEmails();
-
-
-
-                }, 500);
-            }
-
-            jsHello(100);
-        });
-
-        function getPercentage() {
-
-                var xmlHttp = new XMLHttpRequest();
-                xmlHttp.open("GET", "checkPercentage", false); // false for synchronous request
-                xmlHttp.send(null);
-                return parseInt(xmlHttp.responseText);
-
-
-        }
-
-
-        function sendEmails() {
-
-            if(document.getElementById("confirm").value!="CONFIRM" ){
-
-            }
-            else {
-
-                var xmlHttp = new XMLHttpRequest();
-                xmlHttp.open("GET", "getPercentage", true); // false for synchronous request
-                xmlHttp.send(null);
-
-
-            }
-
-
-
-        }
-
-
-
-
-    </script>
+    <script src="${contextPath}/resources/progressbars/sendemailtoassign.js"></script>
 </head>
 <body class="index">
 <div id="page-wrapper">
@@ -88,11 +26,17 @@
     <section id="banner">
         <div class="inner">
             <header>Send Emails TO Applicants</header>
-<form:form id="contact" method="POST"  class="form-signin">
-            ${button}
+<form:form id="contact"  class="form-signin">
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+            <span class = "current-value">0%</span>
+        </div>
+    </div>
+    <label id="status">type "CONFIRM" to start sending.</label>
 
-            ${progress}
     <input id="confirm" placeholder="CONFIRM">
+    <br>
+    <label id="result"></label>
 </form:form>
 
         </div>

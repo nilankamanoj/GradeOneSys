@@ -21,27 +21,28 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @Controller
-public class AssignedApplicantController extends AbstractController{
-
-    private int percentage = 0;
-    private boolean invoked =false;
+public class AssignedApplicantController extends AbstractController {
+    private float total;
+    private float emails = 0;
+    private float percentage = 0;
+    private boolean invoked = false;
 
     @Autowired
     private AssignedApplicantService assignedApplicantService;
     @Autowired
     private AssignedApplicantValidator assignedApplicantValidator;
-@Autowired
-private EmailApplicantService emailApplicantService;
-;
+    @Autowired
+    private EmailApplicantService emailApplicantService;
+
+
     @RequestMapping(value = "/assignapplicant", method = RequestMethod.GET)
-    public String assignApplicant(Model model, String ok){
-        if(!setNav(model,8)){
+    public String assignApplicant(Model model, String ok) {
+        if (!setNav(model, 8)) {
             return "redirect:/changepass?force";
         }
-        model.addAttribute("assignForm",new AssignedApplicant());
+        model.addAttribute("assignForm", new AssignedApplicant());
 
-        if (ok != null)
-        {
+        if (ok != null) {
             setNav(model, 8);
             model.addAttribute("message", "<div class='alert alert-info'>Assigned successfully.</div>");
         }
@@ -49,12 +50,12 @@ private EmailApplicantService emailApplicantService;
         return "assignapplicant";
 
     }
-    @RequestMapping(value = "/assignapplicant", method = RequestMethod.POST)
-    public String assignApplicant(@ModelAttribute("assignForm") AssignedApplicant assignForm, BindingResult bindingResult, Model model){
-        assignedApplicantValidator.validate(assignForm,bindingResult);
 
-        if (bindingResult.hasErrors())
-        {
+    @RequestMapping(value = "/assignapplicant", method = RequestMethod.POST)
+    public String assignApplicant(@ModelAttribute("assignForm") AssignedApplicant assignForm, BindingResult bindingResult, Model model) {
+        assignedApplicantValidator.validate(assignForm, bindingResult);
+
+        if (bindingResult.hasErrors()) {
             setNav(model, 8);
             return "assignapplicant";
         }
@@ -63,8 +64,8 @@ private EmailApplicantService emailApplicantService;
     }
 
     @RequestMapping(value = "/viewapplications", method = RequestMethod.GET)
-    public String viewApplicant(Model model){
-        if(!setNav(model,9)){
+    public String viewApplicant(Model model) {
+        if (!setNav(model, 9)) {
             return "redirect:/changepass?force";
         }
         model.addAttribute("applicantForm", new Applicant());
@@ -74,32 +75,27 @@ private EmailApplicantService emailApplicantService;
     }
 
     @RequestMapping(value = "/viewapplications", method = RequestMethod.POST)
-    public String viewApplicant(@ModelAttribute("applicantForm") Applicant applicantForm, BindingResult bindingResult, Model model){
-        setNav(model,9);
+    public String viewApplicant(@ModelAttribute("applicantForm") Applicant applicantForm, BindingResult bindingResult, Model model) {
+        setNav(model, 9);
 
 
         return "viewapplications";
 
     }
 
-    @RequestMapping(value="/sendemailstoassign", method = RequestMethod.GET)
-    public String sendEmail(Model model){
-        if(!setNav(model,4)){
+    @RequestMapping(value = "/sendemailstoassign", method = RequestMethod.GET)
+    public String sendEmail(Model model) {
+        if (!setNav(model, 10)) {
             return "redirect:/changepass?force";
         }
-        //model.addAttribute("button","<button class='button special' type='submit'>Proceed</button>");
-        model.addAttribute("progress","    <div class=\"progress\">\n" +
-                "        <div class=\"progress-bar progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"0\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 0%;\">\n" +
-                "            <span class = \"current-value\">0%</span>\n" +
-                "        </div>\n" +
-                "</div>");
         return "sendemailstoassign";
     }
 
-    @RequestMapping(value="/sendemailstoassign", method = RequestMethod.POST)
-    public String proceedEmail(Model model){
-
-
+    @RequestMapping(value = "/sendemailstoassign", method = RequestMethod.POST)
+    public String proceedEmail(Model model) {
+        if (!setNav(model, 10)) {
+            return "redirect:/changepass?force";
+        }
 
         return "sendemailstoassign";
 
@@ -107,56 +103,76 @@ private EmailApplicantService emailApplicantService;
 
     @RequestMapping("checkAssignId")
     @ResponseBody
-    public String  checkUser(String application_id){
+    public String checkUser(String application_id) {
 
         return String.valueOf(assignedApplicantService.checkAvailability(application_id));
     }
 
     @RequestMapping("getEmail")
     @ResponseBody
-    public String  checkEmail(String application_id){
+    public String checkEmail(String application_id) {
         EmailApplicant emailApplicant = emailApplicantService.getOne(application_id);
-       // MailMail mailMail=new MailMail();
-       // mailMail.sendMail("nilankaeng16a@gmail.com","Your Application Accepted",emailApplicant.getEmail());
-      //  PdfGenerator pdfGenerator = new PdfGenerator();
-      //  pdfGenerator.generatePdf(emailApplicant.getEmail(),emailApplicant.getApplicant().getId(),"assignForms/");
         return String.valueOf(emailApplicant.getEmail());
     }
 
     @RequestMapping("getPercentage")
     @ResponseBody
-    public String  getPercentage(){
+    public String getPercentage() {
 
-            sendEmail();
+        sendEmail();
 
         return String.valueOf(percentage);
     }
 
     @RequestMapping("checkPercentage")
     @ResponseBody
-    public String  checkPercentage(){
+    public String checkPercentage() {
 
         return String.valueOf(percentage);
     }
 
-    public void sendEmail(){
-        if(!invoked) {
+    @RequestMapping("checkResults")
+    @ResponseBody
+    public String checkResult() {
+        String results = "";
+        results+=String.valueOf((int)total);
+        results+=(","+String.valueOf((int)emails));
+        results+=(","+String.valueOf((int)total-(int)emails));
+
+
+return results;
+
+    }
+
+    public void sendEmail() {
+        if (!invoked) {
             invoked = true;
             List<String> emailApps = emailApplicantService.getIdList();
-            int total = emailApps.size();
-            int proceed = 0;
+            this.total = emailApps.size();
+            float proceed = 0;
             MailMail mailMail = new MailMail();
-            // ;
+            PdfGenerator pdfGenerator = new PdfGenerator();
+
             for (String app_id : emailApps) {
                 if (mailMail.sendMail("nilankaeng16a@gmail.com", "Your Application Accepted" + app_id, emailApplicantService.getOne(app_id).getEmail())) {
                     proceed += 1;
-                    percentage += ((proceed / total) * 100);
+                    percentage =(proceed/total)*100;
+                    emails+=1;
+                }
+                else {
+                    pdfGenerator.generatePdf(emailApplicantService.getOne(app_id).getEmail(),emailApplicantService.getOne(app_id).getApplicant().getId(),"assignForms/");
+                    proceed += 1;
+                    percentage =(proceed/total)*100;
                 }
             }
+
+
+
         }
+    }
 
     }
 
 
 
-}
+
