@@ -28,7 +28,13 @@ $(function() {
         checkUnique: true,
         getEmail: true
 
+      },
+      mark: {
+          required: true,
+          number: true
+
       }
+
     },
     messages: {
 
@@ -38,7 +44,12 @@ $(function() {
         maxlength: "enter valid id",
         number: "enter valid id",
         checkUnique: "not assigned"
-      }
+      },
+        mark: {
+            required: "mark required",
+            number: "input valid mark"
+
+        }
     },
     submitHandler: function(form) {
       form.submit();
