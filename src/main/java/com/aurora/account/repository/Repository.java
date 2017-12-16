@@ -12,6 +12,7 @@ public abstract class Repository {
     public Repository(){
        this.con =new DbConnection();
        this.stmt = con.getConnection();
+
     }
     
     public abstract void saveObj(Object object);

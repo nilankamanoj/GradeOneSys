@@ -50,5 +50,5 @@ public class ModelTesting {
 
         System.out.println(parent.toString());
     }
-    
+
 }

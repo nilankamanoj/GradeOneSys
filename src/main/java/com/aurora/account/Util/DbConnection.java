@@ -1,5 +1,6 @@
 package com.aurora.account.Util;
 
+import com.mysql.jdbc.PreparedStatement;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import java.io.IOException;
@@ -29,5 +30,5 @@ public class DbConnection {
        JdbcTemplate stmt=new JdbcTemplate(dataSource);
         return stmt;
     }
-    
+
 }

@@ -49,6 +49,14 @@ public class UserServiceImpl implements UserService {
 
 
        }
+
+       else if(occupation.trim().equals("interviewer")){
+           roleSet.add(roleRepository.findAll().get(0));
+           roleSet.add(roleRepository.findAll().get(4));
+           user.setRoles(roleSet);
+
+
+       }
         userRepository.save(user);
     }
 

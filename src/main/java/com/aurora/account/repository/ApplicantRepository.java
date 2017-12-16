@@ -10,7 +10,10 @@ public class ApplicantRepository extends Repository{
     public void saveObj(Object object) {
         Applicant applicant = (Applicant) object;
         String dataField=applicant.toString();
-        super.stmt.update("insert into applicant values"+dataField);
+        super.stmt.update("insert into applicant values(?,?,?,?,?,?,?,?,?,?,?,?)",
+                applicant.getId(),applicant.getFirst_name(),applicant.getSecond_name(),applicant.getInitials(),applicant.getDob(),
+                applicant.getGender(),applicant.getReligion(),applicant.getAge(),applicant.getDistrict(),applicant.getDiv_sec(),
+                applicant.getDiv_grama(),applicant.getAppResult());
         
     }
 

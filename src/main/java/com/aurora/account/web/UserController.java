@@ -5,8 +5,12 @@ import com.aurora.account.model.TempUser;
 import com.aurora.account.model.User;
 import com.aurora.account.service.ActivityService;
 import com.aurora.account.service.ApplicantService;
+import com.aurora.account.service.SecurityService;
 import com.aurora.account.service.UserService;
 import com.aurora.account.validator.ChangePassValidator;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +30,6 @@ public class UserController extends AbstractController
     private ChangePassValidator changePassValidator;
     @Autowired
     private ActivityService activityService;
-
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout)
@@ -161,7 +164,6 @@ public class UserController extends AbstractController
 
         return String.valueOf(userService.availabaleUserName(username));
     }
-
 
 
 }

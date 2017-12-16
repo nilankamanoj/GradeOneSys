@@ -44,6 +44,7 @@ public class ContentGenerator {
             add("");//assignapplicant     8
             add("");//viewapplications    9
             add("");//sendemailstoassign 10
+            add("");//interview          11
         }};
 
         this.navlist.set(active,"\"current\"");
@@ -68,11 +69,18 @@ public class ContentGenerator {
            navbar+="<li class="+navlist.get(3)+"><a href='viewusers'>View Users</a></li>";
         }
 
+
         if(occupation.trim().equals("reviewer")){
             navbar+="<li class="+navlist.get(9)+"><a href='viewapplications' >View Applications</a></li>";
             navbar+="<li class="+navlist.get(10)+"><a href='sendemailstoassign' >Send Confirm Emails</a></li>";
 
         }
+
+        if(occupation.trim().equals("interviewer")){
+            navbar+="<li class="+navlist.get(11)+"><a href='interview' >Interview</a></li>";
+
+        }
+
 
 
         navbar+="      <li class=\"submenu\">                                                                  "+
