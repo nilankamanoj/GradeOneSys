@@ -1,6 +1,9 @@
 package com.aurora.account.web;
 
+import com.aurora.account.model.Interviewer;
 import com.aurora.account.model.User;
+import com.aurora.account.model.UserForm;
+import com.aurora.account.service.InterviewerService;
 import com.aurora.account.service.UserService;
 import com.aurora.account.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,8 @@ public class RegistrationContoller extends AbstractController
     private UserValidator userValidator;
     @Autowired
     private UserService userService;
+    @Autowired
+    private InterviewerService interviewerService;
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model, String ok) 
@@ -25,7 +30,7 @@ public class RegistrationContoller extends AbstractController
         if(!setNav(model,1)){
             return "redirect:/changepass?force";
         }
-        model.addAttribute("userForm", new User());
+        model.addAttribute("userForm", new UserForm());
 
         if (ok != null)
         {
@@ -36,9 +41,15 @@ public class RegistrationContoller extends AbstractController
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) 
+    public String registration(@ModelAttribute("userForm") UserForm userForm, BindingResult bindingResult, Model model)
     {
-        userValidator.validate(userForm, bindingResult);
+        User user=new User();
+        user.setUsername(userForm.getUsername());
+        user.setOccupation(userForm.getOccupation());
+        user.setPassword(userForm.getPassword());
+        user.setPasswordConfirm(userForm.getPasswordConfirm());
+
+        userValidator.validate(user, bindingResult);
 
         if (bindingResult.hasErrors()) 
         {
@@ -46,7 +57,14 @@ public class RegistrationContoller extends AbstractController
             return "registration";
         }
 
-        userService.save(userForm);
+        userService.save(user);
+        if(userForm.getOccupation().trim().equals("interviewer")){
+           Interviewer interviewer=new Interviewer();
+           interviewer.setSch(userForm.getSch());
+           interviewer.setUid(Long.toString(userService.findByUsername(user.getUsername()).getId()));
+
+           interviewerService.saveInterviwer(interviewer);
+        }
         return "redirect:/registration?ok";
     }
 

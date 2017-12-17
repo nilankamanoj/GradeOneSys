@@ -192,6 +192,22 @@ ALTER TABLE `past_pupil` CHANGE `past_pupil_member_id` `past_pupil_member_id` VA
 insert into role values('4','ROLE_REVIEW');
 insert into role values('5','ROLE_INTERVIEWER');
 
+CREATE TABLE interviewer(
+  id INT NOT NULL AUTO_INCREMENT,
+  uid INT NOT NULL ,
+  sch INT,
+  PRIMARY KEY (id),
+  FOREIGN KEY (`uid`)
+  REFERENCES `GradeOneSchema`.`user` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  FOREIGN KEY (`sch`)
+  REFERENCES `GradeOneSchema`.`school` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE
+
+);
+
 
 
 

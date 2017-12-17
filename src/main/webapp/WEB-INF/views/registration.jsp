@@ -51,6 +51,13 @@
                         <form:errors path="occupation"></form:errors>
                     </div>
                 </spring:bind>
+                <spring:bind path="sch">
+                    <div class="form-group ${status.error ? 'has-error' : ''}">
+                        <form:input type="text" path="sch" class="form-control" placeholder="School id"
+                                    autofocus="true"></form:input>
+                        <form:errors path="sch"></form:errors>
+                    </div>
+                </spring:bind>
 
                 <spring:bind path="password">
                     <div class="form-group ${status.error ? 'has-error' : ''}">
@@ -69,6 +76,7 @@
 
                 <button class="button special" type="submit">Submit</button>
             </form:form>
+
 
         </div>
     </section>
