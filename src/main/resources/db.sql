@@ -131,20 +131,13 @@ CREATE TABLE IF NOT EXISTS `GradeOneSchema`.`selected_applicant` (
   `result_inerview` DECIMAL(4,1) NOT NULL DEFAULT 0,
   `result_total` DECIMAL(4,1) DEFAULT 0,
   `interviewer` INT NOT NULL,
-  `student_id` INT NULL,
   PRIMARY KEY (`application_id`, `selected_sch_id`),
   INDEX `dataentry track_idx` (`interviewer` ASC),
-  INDEX `select as a student_idx` (`student_id` ASC),
   INDEX `selected school_idx` (`selected_sch_id` ASC),
   CONSTRAINT `dataentry track`
     FOREIGN KEY (`interviewer`)
     REFERENCES `GradeOneSchema`.`user` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE CASCADE,
-  CONSTRAINT `select as a student`
-    FOREIGN KEY (`student_id`)
-    REFERENCES `GradeOneSchema`.`student` (`id`)
-    ON DELETE SET NULL
     ON UPDATE CASCADE,
   CONSTRAINT `applicant `
     FOREIGN KEY (`application_id`)
