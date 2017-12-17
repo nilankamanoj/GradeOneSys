@@ -2,25 +2,21 @@ package com.aurora.account.model;
 
 public class Interviewee {
     
-    private String application_id;
-    private String selected_sch_id;
+    private int application_id;
+    private final int selected_sch_id;
     private double result_interview;
-    private String interviewer;
+    private final int interviewer;
 
-    public String getApplication_id() {
+    public int getApplication_id() {
         return application_id;
     }
 
-    public void setApplication_id(String application_id) {
+    public void setApplication_id(int application_id) {
         this.application_id = application_id;
     }
 
-    public String getSelected_sch_id() {
+    public int getSelected_sch_id() {
         return selected_sch_id;
-    }
-
-    public void setSelected_sch_id(String selected_sch_id) {
-        this.selected_sch_id = selected_sch_id;
     }
 
     public double getResult_interview() {
@@ -31,13 +27,15 @@ public class Interviewee {
         this.result_interview = result_interview;
     }
 
-    public String getInterviewer() {
+    public int getInterviewer() {
         return interviewer;
     }
-
-    public void setInterviewer(String interviewer) {
-        this.interviewer = interviewer;
+    
+    public Interviewee(int interviewer_id, int sch_id){
+        this.interviewer=interviewer_id;
+        this.selected_sch_id=sch_id;    
     }
+    
     
     @Override
     public String toString(){
