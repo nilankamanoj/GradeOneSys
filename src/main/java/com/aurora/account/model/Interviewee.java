@@ -3,9 +3,17 @@ package com.aurora.account.model;
 public class Interviewee {
     
     private int application_id;
-    private final int selected_sch_id;
+    private int selected_sch_id;
     private double result_interview;
-    private final int interviewer;
+    private int interviewer;
+
+    public void setSelected_sch_id(int selected_sch_id) {
+        this.selected_sch_id = selected_sch_id;
+    }
+
+    public void setInterviewer(int interviewer) {
+        this.interviewer = interviewer;
+    }
 
     public int getApplication_id() {
         return application_id;
@@ -31,10 +39,6 @@ public class Interviewee {
         return interviewer;
     }
     
-    public Interviewee(int interviewer_id, int sch_id){
-        this.interviewer=interviewer_id;
-        this.selected_sch_id=sch_id;    
-    }
     
     
     @Override

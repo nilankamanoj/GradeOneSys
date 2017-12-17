@@ -11,10 +11,8 @@ public class InterviewerRowMapper implements RowMapper {
     @Override
     public Object mapRow(ResultSet resultSet, int i) throws SQLException {
         Interviewer interviewer=new Interviewer();
-
         interviewer.setUid(resultSet.getString("uid"));
         interviewer.setSch(resultSet.getString("sch"));
-
         return interviewer;
     }
 }

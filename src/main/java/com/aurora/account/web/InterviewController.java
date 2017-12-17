@@ -1,7 +1,11 @@
 package com.aurora.account.web;
 
 import com.aurora.account.model.Interviewee;
+import com.aurora.account.model.Interviewer;
+import com.aurora.account.model.User;
 import com.aurora.account.service.IntervieweeService;
+import com.aurora.account.service.InterviewerService;
+import com.aurora.account.service.UserService;
 import com.aurora.account.validator.IntervieweeValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +21,10 @@ public class InterviewController extends AbstractController{
     private IntervieweeService intervieweeService;
     @Autowired
     private IntervieweeValidator intervieweeValidator;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private InterviewerService interviewerService;
 
     @RequestMapping(value = "/interview", method = RequestMethod.GET)
     public String interview(Model model, String ok)
@@ -25,8 +33,12 @@ public class InterviewController extends AbstractController{
         {
             return "redirect:/changepass?force";
         }
-        
-        model.addAttribute("intervieweeForm", new Interviewee());
+        User auth = userService.findByUsername(super.getAuth());
+        Interviewer interviewer = interviewerService.getOne(Long.toString(auth.getId()));
+        Interviewee interviewee = new Interviewee();
+        interviewee.setInterviewer(interviewer.getUid());
+        interviewee.setSelected_sch_id(interviewer.getSch());
+        model.addAttribute("interviewee", interviewee);
         
         if (ok != null)
         {
@@ -38,7 +50,7 @@ public class InterviewController extends AbstractController{
 
     }
     @RequestMapping(value = "/interview", method = RequestMethod.POST)
-    public String addMarks(@ModelAttribute("intervieweeForm") Interviewee intervieweeForm, BindingResult bindingResult, Model model) {
+    public String addMarks(@ModelAttribute("interviewee") Interviewee intervieweeForm, BindingResult bindingResult, Model model) {
         
         
         intervieweeValidator.validate(intervieweeForm, bindingResult);

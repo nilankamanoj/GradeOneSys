@@ -29,18 +29,18 @@
                 <h2 class="form-signin-heading">View application details</h2>
                 <span>${message}</span>
 
-                <spring:bind path = "Id">
+                <spring:bind path = "application_id">
                     <div class="form-group ${status.error ? 'has-error' : ''}">
-                        <form:input type="text" path="Id" class="form-control" placeholder="application id"
+                        <form:input type="text" path="application_id" class="form-control" placeholder="application id"
                                     autofocus="true"></form:input>
-                        <form:errors path="Id"></form:errors>
+                        <form:errors path="application_id"></form:errors>
                     </div>
                 </spring:bind>
-                <spring:bind path = "mark">
+                <spring:bind path = "result_interview">
                     <div class="form-group ${status.error ? 'has-error' : ''}">
-                        <form:input type="text" path="mark" class="form-control" placeholder="Mark"
+                        <form:input type="text" path="result_interview" class="form-control" placeholder="Mark"
                                     autofocus="true"></form:input>
-                        <form:errors path="mark"></form:errors>
+                        <form:errors path="result_interview"></form:errors>
                     </div>
                 </spring:bind>
                 <button class="button special" type="submit">Submit</button>
