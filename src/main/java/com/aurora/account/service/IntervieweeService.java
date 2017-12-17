@@ -12,4 +12,9 @@ public class IntervieweeService {
         interviewRepo.saveObj(interviewee);
     }
     
+    public Interviewee getInterviewee(String app_id, String sch_id){
+        String id = app_id + " " + sch_id;
+        return (Interviewee) interviewRepo.getOne(id);
+    }
+    
 }

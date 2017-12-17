@@ -52,7 +52,6 @@ public class InterviewController extends AbstractController{
     @RequestMapping(value = "/interview", method = RequestMethod.POST)
     public String addMarks(@ModelAttribute("interviewee") Interviewee intervieweeForm, BindingResult bindingResult, Model model) {
         
-        
         intervieweeValidator.validate(intervieweeForm, bindingResult);
         setNav(model, 11);
 
