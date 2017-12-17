@@ -208,6 +208,18 @@ CREATE TABLE interviewer(
 
 );
 
+DELIMITER $$
+CREATE FUNCTION `calc_result`(app_id int(11), s_id int(11)) RETURNS decimal(10,0)
+BEGIN
+    declare t_result decimal;
+    select (applicant.result_application + 
+    assigned_applicant.application_result) into t_result
+    from applicant left outer join assigned_applicant using (application_id)
+    where application_id = app_id AND sch_id=s_id;
+    return t_result;
+END$$
+DELIMITER ;
+
 
 
 
