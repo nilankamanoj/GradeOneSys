@@ -4,7 +4,7 @@ public class Interviewee {
     
     private String application_id;
     private String selected_sch_id;
-    private double result_interview;
+    private String result_interview;
     private String interviewer;
 
     public String getApplication_id() {
@@ -23,11 +23,11 @@ public class Interviewee {
         this.selected_sch_id = selected_sch_id;
     }
 
-    public double getResult_interview() {
+    public String getResult_interview() {
         return result_interview;
     }
 
-    public void setResult_interview(double result_interview) {
+    public void setResult_interview(String result_interview) {
         this.result_interview = result_interview;
     }
 
@@ -38,6 +38,9 @@ public class Interviewee {
     public void setInterviewer(String interviewer) {
         this.interviewer = interviewer;
     }
+
+    
+    
     
     @Override
     public String toString(){
