@@ -37,6 +37,7 @@ public class IntervieweeValidator implements Validator {
         
         
         if (assAppServ.availableCombSchApp(sch_id, app_id)){
+            System.out.println(sch_id+","+app_id);
             errors.rejectValue("application_id", "Invalid.interviewee.application");
         }
         

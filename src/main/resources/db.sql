@@ -128,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `GradeOneSchema`.`student` (
 CREATE TABLE IF NOT EXISTS `GradeOneSchema`.`selected_applicant` (
   `application_id` INT NOT NULL,
   `selected_sch_id` INT NOT NULL,
-  `result_inerview` DECIMAL(4,1) NOT NULL DEFAULT 0,
+  `result_interview` DECIMAL(4,1) NOT NULL DEFAULT 0,
   `result_total` DECIMAL(4,1) DEFAULT 0,
   `interviewer` INT NOT NULL,
   PRIMARY KEY (`application_id`, `selected_sch_id`),
@@ -212,6 +212,26 @@ BEGIN
     return t_result;
 END$$
 DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER `marks_trigger`
+AFTER INSERT ON `selected_applicant`
+FOR EACH ROW
+  UPDATE selected_applicant
+  SET result_total = result_interview + calc_result()
+
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `transferAssignToSelected`()
+NO SQL
+  Insert into selected_applicant (application_id, selected_sch_id,result_inerview, interviewer)
+    select application_id, sch_id, '0','1' From not_interviewed
+
+                                                DELIMITER $$
+CREATE TRIGGER `marks_trigger`
+BEFORE INSERT ON `selected_applicant`
+FOR EACH ROW BEGIN
+  SET NEW.result_total = NEW.result_interview + calc_result(NEW.application_id,NEW.selected_sch_id);
+END$$
 
 
 

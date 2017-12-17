@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="${contextPath}/resources/assets/css/customize.css" />
     <script src="${contextPath}/resources/assets/js/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>
-    <script src="${contextPath}/resources/validator/validateview.js"></script>
+    <script src="${contextPath}/resources/validator/validateInt.js"></script>
 </head>
 <body class="index">
 <div id="page-wrapper">
@@ -25,8 +25,8 @@
     </c:if>
     <section id="banner">
         <div class="inner">
-            <form:form id="contact" method="POST" modelAttribute="interviwee" class="form-signin">
-                <h2 class="form-signin-heading">View application details</h2>
+            <form:form id="contact" method="POST" modelAttribute="interviewee" class="form-signin">
+                <h2 class="form-signin-heading">Add Interview Marks</h2>
                 <span>${message}</span>
 
                 <spring:bind path = "application_id">
@@ -44,6 +44,7 @@
                     </div>
                 </spring:bind>
                 <button class="button special" type="submit">Submit</button>
+
             </form:form>
         </div>
 

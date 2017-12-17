@@ -44,6 +44,6 @@ public class Interviewee {
     
     @Override
     public String toString(){
-        return ("('"+application_id+"',"+selected_sch_id+","+result_interview+","+interviewer+"')");
+        return ("('"+application_id+"','"+selected_sch_id+"','"+result_interview+"','"+interviewer+"')");
     }
 }

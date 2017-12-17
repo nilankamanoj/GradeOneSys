@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class InterviewController extends AbstractController{
@@ -39,6 +40,7 @@ public class InterviewController extends AbstractController{
         interviewee.setInterviewer(interviewer.getUid());
         interviewee.setSelected_sch_id(interviewer.getSch());
         model.addAttribute("interviewee", interviewee);
+        model.addAttribute("school",interviewee.getSelected_sch_id());
         
         if (ok != null)
         {
@@ -51,7 +53,10 @@ public class InterviewController extends AbstractController{
     }
     @RequestMapping(value = "/interview", method = RequestMethod.POST)
     public String addMarks(@ModelAttribute("interviewee") Interviewee intervieweeForm, BindingResult bindingResult, Model model) {
-        
+        User auth = userService.findByUsername(super.getAuth());
+        Interviewer interviewer = interviewerService.getOne(Long.toString(auth.getId()));
+        intervieweeForm.setInterviewer(interviewer.getUid());
+        intervieweeForm.setSelected_sch_id(interviewer.getSch());
         intervieweeValidator.validate(intervieweeForm, bindingResult);
         setNav(model, 11);
 
@@ -62,4 +67,5 @@ public class InterviewController extends AbstractController{
             return "redirect:/interview?ok";
         }
     }
+
 }
