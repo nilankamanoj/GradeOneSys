@@ -3,6 +3,7 @@ package com.aurora.account.web;
 import com.aurora.account.model.Interviewee;
 import com.aurora.account.model.Interviewer;
 import com.aurora.account.model.User;
+import com.aurora.account.service.AssignedApplicantService;
 import com.aurora.account.service.IntervieweeService;
 import com.aurora.account.service.InterviewerService;
 import com.aurora.account.service.UserService;
@@ -26,6 +27,8 @@ public class InterviewController extends AbstractController{
     private UserService userService;
     @Autowired
     private InterviewerService interviewerService;
+    @Autowired
+    private AssignedApplicantService assignedApplicantService;
 
     @RequestMapping(value = "/interview", method = RequestMethod.GET)
     public String interview(Model model, String ok)
@@ -67,5 +70,26 @@ public class InterviewController extends AbstractController{
             return "redirect:/interview?ok";
         }
     }
+    @RequestMapping("checksch")
+    @ResponseBody
+    public String checkSch(String application_id)
+    {
+        User auth = userService.findByUsername(super.getAuth());
+        Interviewer interviewer = interviewerService.getOne(Long.toString(auth.getId()));
+        String sch_id=interviewer.getSch();
+
+        return String.valueOf(assignedApplicantService.availableCombSchApp(sch_id,application_id));
+    }
+    @RequestMapping("checkint")
+    @ResponseBody
+    public String checkInt(String application_id)
+    {
+        User auth = userService.findByUsername(super.getAuth());
+        Interviewer interviewer = interviewerService.getOne(Long.toString(auth.getId()));
+        String sch_id=interviewer.getSch();
+
+        return String.valueOf(intervieweeService.getInterviewee(application_id,sch_id)!=null);
+    }
+
 
 }

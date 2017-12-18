@@ -16,6 +16,21 @@ jQuery.validator.addMethod("getEmail", function(value, element) {
 
     return true;
 });
+jQuery.validator.addMethod("checksch", function(value, element) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", "checksch?application_id="+value, false ); // false for synchronous request
+    xmlHttp.send( null );
+
+    return xmlHttp.responseText=="false";
+});
+jQuery.validator.addMethod("checkint", function(value, element) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", "checkint?application_id="+value, false ); // false for synchronous request
+    xmlHttp.send( null );
+
+    return xmlHttp.responseText=="false";
+});
+
 $(function() {
 
     $("form[id='contact']").validate({
@@ -26,6 +41,8 @@ $(function() {
                 maxlength: 8,
                 number: true,
                 checkUnique: true,
+                checksch :true,
+                checkint:true,
                 getEmail: true
 
             },
@@ -43,7 +60,9 @@ $(function() {
                 minlength: "enter valid id",
                 maxlength: "enter valid id",
                 number: "enter valid id",
-                checkUnique: "not assigned"
+                checkUnique: "not assigned",
+                checksch:"not assigned for your school",
+                checkint:"already interviewed"
             },
             result_interview: {
                 required: "mark required",
